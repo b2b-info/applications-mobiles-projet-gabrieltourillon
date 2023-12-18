@@ -4,10 +4,7 @@ import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.osrsdex.models.AtkStyle
 import kotlinx.parcelize.Parcelize
-
-
 
 @Parcelize
 @Entity(primaryKeys = ["loadoutName", "playerName"])

@@ -8,5 +8,13 @@ class EditLoadoutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_loadout)
+
     }
+
+
+    fun saveLoadout()
+    {
+
+    }
+
 }

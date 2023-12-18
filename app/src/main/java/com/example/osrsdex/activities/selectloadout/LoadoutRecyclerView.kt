@@ -9,7 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.osrsdex.R
 import com.example.osrsdex.activities.TAG
-import com.example.osrsdex.models.Loadout
+import com.example.osrsdex.db.Loadout
+
 
 class LoadoutViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 {
@@ -30,7 +31,7 @@ class LoadoutViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     fun bind(loadout: Loadout)
     {
         currentLoadout = loadout
-        name.text = loadout.name
+        name.text = loadout.loadoutName
         description.text = loadout.description
         btnEdit.setOnClickListener{
             clickEditLoadout(currentLoadout)
@@ -42,12 +43,13 @@ class LoadoutViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     }
 }
 
-class LoadoutRecyclerAdapter(private val listLoadout:List<Loadout>) : RecyclerView.Adapter<LoadoutViewHolder>()
+class LoadoutRecyclerAdapter(private var listLoadout:List<Loadout>) : RecyclerView.Adapter<LoadoutViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LoadoutViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_loadouts, parent, false)
         return LoadoutViewHolder(view)
     }
+
 
     override fun getItemCount(): Int {
         return listLoadout.size

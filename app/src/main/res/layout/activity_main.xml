@@ -18,17 +18,6 @@
         app:layout_constraintVertical_bias="0.5">
 
         <Button
-            android:id="@+id/btnPlayerLoadoutsView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btnView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/btnPlayerLoadoutsCreate"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btnPlayerLoadoutsCreate" />
-
-        <Button
             android:id="@+id/btnPlayerLoadoutsCreate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,11 +25,18 @@
             android:layout_marginBottom="8dp"
             android:text="@string/btnCreate"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnPlayerLoadoutsView"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toStartOf="@+id/btnPlayerLoadoutsViewLoadout"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvPlayerLoadouts" />
+
+        <Button
+            android:id="@+id/btnPlayerLoadoutsViewLoadout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnView"
+            app:layout_constraintStart_toEndOf="@+id/btnPlayerLoadoutsCreate"
+            app:layout_constraintTop_toTopOf="@+id/btnPlayerLoadoutsCreate" />
 
         <TextView
             android:id="@+id/tvPlayerLoadouts"

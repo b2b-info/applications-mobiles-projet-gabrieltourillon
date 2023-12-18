@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Loadout::class, Player::class], version = 1)
+@Database(entities = [Loadout::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun loadoutDAO(): LoadoutDAO
@@ -27,6 +27,7 @@ abstract class AppDatabase : RoomDatabase() {
                 INSTANCE = instance
                 //return our database instance
                 instance
+
             }
         }
 

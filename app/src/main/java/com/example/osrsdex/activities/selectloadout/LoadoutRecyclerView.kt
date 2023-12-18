@@ -43,12 +43,13 @@ class LoadoutViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     }
 }
 
-class LoadoutRecyclerAdapter(private val listLoadout:List<Loadout>) : RecyclerView.Adapter<LoadoutViewHolder>()
+class LoadoutRecyclerAdapter(private var listLoadout:List<Loadout>) : RecyclerView.Adapter<LoadoutViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LoadoutViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_loadouts, parent, false)
         return LoadoutViewHolder(view)
     }
+
 
     override fun getItemCount(): Int {
         return listLoadout.size

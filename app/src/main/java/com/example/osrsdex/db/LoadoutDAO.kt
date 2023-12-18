@@ -7,4 +7,8 @@ interface LoadoutDAO {
     @Query("SELECT * FROM Loadout")
     suspend fun getAll(): List<Loadout>
 
+    @Query("SELECT * FROM Loadout WHERE playerName LIKE (:pn)")
+    suspend fun getAllWherePlayerName(pn: String) : List<Loadout>
+
+
 }

@@ -25,30 +25,18 @@
             android:layout_marginBottom="8dp"
             android:text="@string/btnCreate"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnPlayerLoadoutsEdit"
+            app:layout_constraintEnd_toStartOf="@+id/btnPlayerLoadoutsViewLoadout"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvPlayerLoadouts" />
-
-        <Button
-            android:id="@+id/btnPlayerLoadoutsEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btnEdit"
-            app:layout_constraintEnd_toStartOf="@+id/btnPlayerLoadoutsViewLoadout"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnPlayerLoadoutsCreate"
-            app:layout_constraintTop_toTopOf="@+id/btnPlayerLoadoutsCreate" />
 
         <Button
             android:id="@+id/btnPlayerLoadoutsViewLoadout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btnView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnPlayerLoadoutsEdit"
-            app:layout_constraintTop_toTopOf="@+id/btnPlayerLoadoutsEdit" />
+            app:layout_constraintStart_toEndOf="@+id/btnPlayerLoadoutsCreate"
+            app:layout_constraintTop_toTopOf="@+id/btnPlayerLoadoutsCreate" />
 
         <TextView
             android:id="@+id/tvPlayerLoadouts"

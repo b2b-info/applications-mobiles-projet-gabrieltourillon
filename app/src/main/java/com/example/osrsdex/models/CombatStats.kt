@@ -1,5 +1,7 @@
 package com.example.osrsdex.models
 
+import kotlinx.parcelize.Parcelize
+
 /**
  * Data class containing all combat stats.
  */

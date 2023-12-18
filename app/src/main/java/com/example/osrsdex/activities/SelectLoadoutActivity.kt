@@ -56,8 +56,8 @@ class SelectLoadoutActivity : AppCompatActivity() {
     fun btnGetLoadoutsOnClick() {
         var playerNameString = etPlayerName.getText().toString()
         if (playerNameString.trim() == "") {
-            //Empty Player Text
-            Toast.makeText(this, "Please enter a player name", Toast.LENGTH_SHORT).show();
+            //Empty Player Name
+            Toast.makeText(this, "Please enter a player name", Toast.LENGTH_SHORT).show()
             return;
         } else {
             //We populate the view holder
@@ -75,6 +75,11 @@ class SelectLoadoutActivity : AppCompatActivity() {
                 dataBase.loadoutDAO().getAllWherePlayerName(playerName)
             })
             adapter.notifyDataSetChanged()
+        }
+
+        if(viewModel.loadoutList.size == 0)
+        {
+            Toast.makeText(this, "No loadouts found belonging to player", Toast.LENGTH_LONG).show()
         }
     }
 }

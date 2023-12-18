@@ -53,5 +53,7 @@ data class CombatStats
     var defRng : Int?,
     ///Other Properties///
     //Attack speed in ticks(1 tick = .6s), used to calculate DPS//
-    var atkSpeed: Int?
+    var atkSpeed: Int?,
+    //Prayer bonus//
+    var bnsPry: Int?
 ) : Parcelable

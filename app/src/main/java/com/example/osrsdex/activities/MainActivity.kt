@@ -12,12 +12,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btn: Button = findViewById(R.id.btnPlayerLoadoutsViewLoadout)
-        btn.setOnClickListener(){onClickViewLoadouts()}
+        val btnViewLoadouts: Button = findViewById(R.id.btnPlayerLoadoutsViewLoadout)
+        val btnCreateLoadout: Button = findViewById(R.id.btnPlayerLoadoutsCreate)
+        btnViewLoadouts.setOnClickListener(){onClickViewLoadouts()}
+        btnCreateLoadout.setOnClickListener(){onClickCreateLoadout()}
 
     }
 
-    fun onClickCreateLoadout(){}
+    fun onClickCreateLoadout(){
+        val intent = Intent(applicationContext, EditLoadoutActivity::class.java)
+        startActivity(intent)
+    }
 
     fun onClickViewLoadouts()
     {

@@ -18,7 +18,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class LoadoutViewModel() : ViewModel() {
+class SelectLoadoutViewModel() : ViewModel() {
     val loadoutList: MutableList<Loadout> = mutableListOf()
 }
 
@@ -28,7 +28,7 @@ const val TAG = "OSRSDEX"
 class SelectLoadoutActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: LoadoutRecyclerAdapter
-    val viewModel: LoadoutViewModel by viewModels()
+    val viewModel: SelectLoadoutViewModel by viewModels()
     lateinit var etPlayerName: EditText
     lateinit var btnGetLoadouts: Button
 

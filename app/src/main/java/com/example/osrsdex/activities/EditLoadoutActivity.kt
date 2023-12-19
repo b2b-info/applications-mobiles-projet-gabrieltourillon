@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
@@ -18,12 +19,14 @@ import kotlinx.coroutines.withContext
 class EditLoadoutViewModel() : ViewModel()
 {
     var loadout: Loadout? = null
+
 }
 
 class EditLoadoutActivity : AppCompatActivity() {
     private lateinit var btnSave: Button
     private lateinit var playerName: EditText
     private lateinit var loadoutName: EditText
+    val viewModel: EditLoadoutViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_loadout)
@@ -43,15 +46,12 @@ class EditLoadoutActivity : AppCompatActivity() {
     {
         val dataBase = AppDatabase.getDatabase(applicationContext)
 
-        var playerNameString = playerName.text.toString()
-        var loadoutNameString = loadoutName.text.toString()
-
         //Verify values:
         if(true/*playerName.text.isNotEmpty() && loadoutName.text.isNotEmpty()*/)
         {
             //Check if loadout already in db
             lifecycleScope.launch{
-                val loadoutExists= (withContext(Dispatchers.IO) {dataBase.loadoutDAO().isLoadoutExists( "Gabeypoo","testloadout")})
+                val loadoutExists= (withContext(Dispatchers.IO) {dataBase.loadoutDAO().isLoadoutExists( createLoadout().playerName, createLoadout().loadoutName)})
                 if(loadoutExists)
                 {
                     Log.d(TAG, "onClickSave: Exists")
@@ -89,20 +89,38 @@ class EditLoadoutActivity : AppCompatActivity() {
         dialog.show()
     }
 
+    fun createLoadout():Loadout
+    {
+        val returned = Loadout("testloadout", "Gabeypoo", "Ah ha very cool ", null, "Slash")
+        return returned
+    }
+
     fun saveLoadout()
     {
         val dataBase = AppDatabase.getDatabase(applicationContext)
         Log.d(TAG, "saveLoadout: ")
-        lifecycleScope.launch {
 
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                val loadout = createLoadout()
+                viewModel.loadout = loadout
+                dataBase.loadoutDAO().insertLoadout(loadout)
+            }
         }
     }
 
     fun replaceLoadout()
     {
         val dataBase = AppDatabase.getDatabase(applicationContext)
-
         Log.d(TAG, "replaceLoadout: ")
+
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                val loadout = createLoadout()
+                viewModel.loadout = loadout
+                dataBase.loadoutDAO().updateLoadout(loadout)
+            }
+        }
     }
 
 }

@@ -14,7 +14,7 @@ interface LoadoutDAO {
     suspend fun getAllWherePlayerName(pn: String) : List<Loadout>
 
     @Insert(entity = Loadout::class)
-    suspend fun insertNewLoadout(loadout: Loadout)
+    suspend fun insertLoadout(loadout: Loadout)
 
     @Update
     suspend fun updateLoadout(loadout: Loadout)

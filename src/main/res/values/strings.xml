@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">OSRSDex</string>
-    <string name="tvPlayerLoadouts">Player Loadouts</string>
-    <string name="btnCreate">Create</string>
-    <string name="btnEdit">Edit</string>
-    <string name="btnView">View Loadouts</string>
-</resources>

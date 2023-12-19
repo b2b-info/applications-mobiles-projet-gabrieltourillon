@@ -16,17 +16,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class EditLoadoutViewModel() : ViewModel()
-{
-    var loadout: Loadout? = null
-
-}
 
 class EditLoadoutActivity : AppCompatActivity() {
     private lateinit var btnSave: Button
     private lateinit var playerName: EditText
     private lateinit var loadoutName: EditText
-    val viewModel: EditLoadoutViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_loadout)
@@ -103,7 +97,6 @@ class EditLoadoutActivity : AppCompatActivity() {
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 val loadout = createLoadout()
-                viewModel.loadout = loadout
                 dataBase.loadoutDAO().insertLoadout(loadout)
             }
         }
@@ -117,7 +110,6 @@ class EditLoadoutActivity : AppCompatActivity() {
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 val loadout = createLoadout()
-                viewModel.loadout = loadout
                 dataBase.loadoutDAO().updateLoadout(loadout)
             }
         }

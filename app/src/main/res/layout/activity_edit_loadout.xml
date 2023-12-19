@@ -90,15 +90,21 @@
             android:layout_height="wrap_content"
             android:text="Combat Stats:"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="134dp"
-            tools:layout_editor_absoluteY="16dp" />
+            app:layout_constraintBottom_toTopOf="@+id/clEditLoadoutCombatStatsLevels"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clEditLoadoutCombatStatsLevels"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="48dp">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvEditLoadoutCombatStatsTitle">
 
             <TextView
                 android:id="@+id/tvEditLoadoutLevelsTitle"
@@ -329,53 +335,23 @@
             android:id="@+id/clEditLoadoutCombatStatsOffensiveBonuses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="-1dp"
-            tools:layout_editor_absoluteY="156dp">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clEditLoadoutCombatStatsLevels">
 
             <TextView
-                android:id="@+id/tvEditLoadoutOffensiveLabel"
+                android:id="@+id/tvEditLoadoutOffensiveTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
                 android:text="Offensive Bonuses:"
-                tools:layout_editor_absoluteX="136dp"
-                tools:layout_editor_absoluteY="16dp" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clEditLoadoutOffensiveRng"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/clEditLoadoutOffensiveStrMel"
-                app:layout_constraintEnd_toStartOf="@+id/clEditLoadoutOffensiveStrMel"
+                app:layout_constraintBottom_toTopOf="@+id/clEditLoadoutOffensiveCrs"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/clEditLoadoutOffensiveMag"
-                app:layout_constraintTop_toTopOf="@+id/clEditLoadoutOffensiveStrMel"
-                app:layout_constraintVertical_bias="0.666">
-
-                <EditText
-                    android:id="@+id/etEditLoadoutLevelsHP6"
-                    android:layout_width="28dp"
-                    android:layout_height="38dp"
-                    android:ems="10"
-                    android:inputType="number"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView11"
-                    app:layout_constraintVertical_bias="0.5" />
-
-                <ImageView
-                    android:id="@+id/imageView11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsHP6"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5"
-                    app:srcCompat="@drawable/ranged_icon" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clEditLoadoutOffensiveStb"
@@ -389,7 +365,7 @@
                 app:layout_constraintVertical_bias="0.0">
 
                 <EditText
-                    android:id="@+id/etEditLoadoutLevelsHP2"
+                    android:id="@+id/etEditLoadoutOffensiveStb"
                     android:layout_width="28dp"
                     android:layout_height="38dp"
                     android:ems="10"
@@ -398,14 +374,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView7"
+                    app:layout_constraintTop_toBottomOf="@+id/ivEditLoadoutOffensiveStb"
                     app:layout_constraintVertical_bias="0.5" />
 
                 <ImageView
-                    android:id="@+id/imageView7"
+                    android:id="@+id/ivEditLoadoutOffensiveStb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsHP2"
+                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveStb"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -426,7 +402,7 @@
                 app:layout_constraintVertical_bias="0.0">
 
                 <EditText
-                    android:id="@+id/etEditLoadoutLevelsHP3"
+                    android:id="@+id/etEditLoadoutOffensiveSls"
                     android:layout_width="28dp"
                     android:layout_height="38dp"
                     android:ems="10"
@@ -435,14 +411,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView8"
+                    app:layout_constraintTop_toBottomOf="@+id/ivEditLoadoutOffensive"
                     app:layout_constraintVertical_bias="0.5" />
 
                 <ImageView
-                    android:id="@+id/imageView8"
+                    android:id="@+id/ivEditLoadoutOffensive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsHP3"
+                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveSls"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -462,7 +438,7 @@
                 app:layout_constraintTop_toTopOf="@+id/clEditLoadoutOffensiveMag">
 
                 <EditText
-                    android:id="@+id/etEditLoadoutLevelsHP4"
+                    android:id="@+id/etEditLoadoutOffensiveCrs"
                     android:layout_width="28dp"
                     android:layout_height="38dp"
                     android:ems="10"
@@ -471,14 +447,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView9"
+                    app:layout_constraintTop_toBottomOf="@+id/ivEditLoadoutOffensiveCrs"
                     app:layout_constraintVertical_bias="0.5" />
 
                 <ImageView
-                    android:id="@+id/imageView9"
+                    android:id="@+id/ivEditLoadoutOffensiveCrs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsHP4"
+                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveCrs"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -499,7 +475,7 @@
                 app:layout_constraintVertical_bias="0.0">
 
                 <EditText
-                    android:id="@+id/etEditLoadoutLevelsHP5"
+                    android:id="@+id/etEditLoadoutOffensiveMag"
                     android:layout_width="28dp"
                     android:layout_height="38dp"
                     android:ems="10"
@@ -508,20 +484,93 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView10"
+                    app:layout_constraintTop_toBottomOf="@+id/ivEditLoadoutOffensiveMag"
                     app:layout_constraintVertical_bias="0.5" />
 
                 <ImageView
-                    android:id="@+id/imageView10"
+                    android:id="@+id/ivEditLoadoutOffensiveMag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsHP5"
+                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveMag"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.5"
                     app:srcCompat="@drawable/magic_icon" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clEditLoadoutOffensiveRng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/clEditLoadoutOffensiveStrMel"
+                app:layout_constraintEnd_toStartOf="@+id/clEditLoadoutOffensiveStrMel"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/clEditLoadoutOffensiveMag"
+                app:layout_constraintTop_toTopOf="@+id/clEditLoadoutOffensiveStrMel"
+                app:layout_constraintVertical_bias="0.666">
+
+                <EditText
+                    android:id="@+id/etEditLoadoutOffensiveRng"
+                    android:layout_width="28dp"
+                    android:layout_height="38dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivEditLoadoutOffensiveRng"
+                    app:layout_constraintVertical_bias="0.5" />
+
+                <ImageView
+                    android:id="@+id/ivEditLoadoutOffensiveRng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveRng"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5"
+                    app:srcCompat="@drawable/ranged_icon" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clEditLoadoutOffensiveStrMel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/clEditLoadoutOffensiveStrMag"
+                app:layout_constraintEnd_toStartOf="@+id/clEditLoadoutOffensiveStrMag"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/clEditLoadoutOffensiveRng"
+                app:layout_constraintTop_toTopOf="@+id/clEditLoadoutOffensiveStrMag">
+
+                <EditText
+                    android:id="@+id/etEditLoadoutOffensiveStrMel"
+                    android:layout_width="28dp"
+                    android:layout_height="38dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivEditLoadoutOffensiveStrMel"
+                    app:layout_constraintVertical_bias="0.5" />
+
+                <ImageView
+                    android:id="@+id/ivEditLoadoutOffensiveStrMel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveStrMel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.5"
+                    app:srcCompat="@drawable/strength_icon" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -536,7 +585,7 @@
                 app:layout_constraintVertical_bias="0.666">
 
                 <EditText
-                    android:id="@+id/etEditLoadoutLevelsHP8"
+                    android:id="@+id/etEditLoadoutOffensiveStrMag"
                     android:layout_width="28dp"
                     android:layout_height="38dp"
                     android:ems="10"
@@ -545,14 +594,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView13"
+                    app:layout_constraintTop_toBottomOf="@+id/ivEditLoadoutOffensiveStrMag"
                     app:layout_constraintVertical_bias="0.5" />
 
                 <ImageView
-                    android:id="@+id/imageView13"
+                    android:id="@+id/ivEditLoadoutOffensiveStrMag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsHP8"
+                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveStrMag"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -571,7 +620,7 @@
                 tools:layout_editor_absoluteY="53dp">
 
                 <EditText
-                    android:id="@+id/etEditLoadoutLevelsHP9"
+                    android:id="@+id/etEditLoadoutOffensiveStrRng"
                     android:layout_width="28dp"
                     android:layout_height="38dp"
                     android:ems="10"
@@ -580,14 +629,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView14"
+                    app:layout_constraintTop_toBottomOf="@+id/ivEditLoadoutOffensiveStrRng"
                     app:layout_constraintVertical_bias="0.5" />
 
                 <ImageView
-                    android:id="@+id/imageView14"
+                    android:id="@+id/ivEditLoadoutOffensiveStrRng"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsHP9"
+                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveStrRng"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -596,242 +645,230 @@
                     app:srcCompat="@drawable/ranged_strength_icon" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clEditLoadoutOffensiveStrMel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/clEditLoadoutOffensiveStrMag"
-                app:layout_constraintEnd_toStartOf="@+id/clEditLoadoutOffensiveStrMag"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/clEditLoadoutOffensiveRng"
-                app:layout_constraintTop_toTopOf="@+id/clEditLoadoutOffensiveStrMag">
-
-                <EditText
-                    android:id="@+id/etEditLoadoutLevelsHP7"
-                    android:layout_width="28dp"
-                    android:layout_height="38dp"
-                    android:ems="10"
-                    android:inputType="number"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView12"
-                    app:layout_constraintVertical_bias="0.5" />
-
-                <ImageView
-                    android:id="@+id/imageView12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsHP7"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5"
-                    app:srcCompat="@drawable/strength_icon" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clEditLoadoutCombatStatsDefensiveBonuses"
-            android:layout_width="390dp"
-            android:layout_height="114dp"
-            tools:layout_editor_absoluteX="2dp"
-            tools:layout_editor_absoluteY="282dp">
+            android:id="@+id/cdEditLoadoutCombatStatsDefensiveBonuses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/clEditLoadoutCombatStatsOffensiveBonuses"
+            tools:layout_editor_absoluteX="1dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clEditLoadoutOffensiveRng"
-                android:layout_width="wrap_content"
+                android:id="@+id/clEditLoadoutCombatStatsDefensiveBonuses"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/clEditLoadoutOffensiveMag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/clEditLoadoutOffensiveMag"
-                app:layout_constraintTop_toTopOf="@+id/clEditLoadoutOffensiveMag">
+                tools:layout_editor_absoluteY="24dp">
 
-                <EditText
-                    android:id="@+id/etEditLoadoutLevelsHP6"
-                    android:layout_width="28dp"
-                    android:layout_height="38dp"
-                    android:ems="10"
-                    android:inputType="number"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView11"
-                    app:layout_constraintVertical_bias="0.5" />
-
-                <ImageView
-                    android:id="@+id/imageView11"
+                <TextView
+                    android:id="@+id/tvEditLoadoutDefensiveTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsHP6"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Defensive Bonuses:"
+                    app:layout_constraintBottom_toTopOf="@+id/clEditLoadoutDefensiveStb"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5"
-                    app:srcCompat="@drawable/ranged_icon" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clEditLoadoutOffensiveSls"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/clEditLoadoutOffensiveStb"
-                app:layout_constraintEnd_toStartOf="@+id/clEditLoadoutOffensiveCrs"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/clEditLoadoutOffensiveStb"
-                app:layout_constraintTop_toTopOf="@+id/clEditLoadoutOffensiveStb">
-
-                <EditText
-                    android:id="@+id/etEditLoadoutLevelsHP3"
-                    android:layout_width="28dp"
-                    android:layout_height="38dp"
-                    android:ems="10"
-                    android:inputType="number"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView8"
-                    app:layout_constraintVertical_bias="0.5" />
-
-                <ImageView
-                    android:id="@+id/imageView8"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clEditLoadoutDefensiveMag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsHP3"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/clEditLoadoutDefensiveCrs"
+                    app:layout_constraintEnd_toStartOf="@+id/clEditLoadoutDefensiveRng"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5"
-                    app:srcCompat="@drawable/slash_icon" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintStart_toEndOf="@+id/clEditLoadoutDefensiveCrs"
+                    app:layout_constraintTop_toTopOf="@+id/clEditLoadoutDefensiveCrs">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clEditLoadoutOffensiveCrs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/clEditLoadoutOffensiveSls"
-                app:layout_constraintEnd_toStartOf="@+id/clEditLoadoutOffensiveMag"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/clEditLoadoutOffensiveSls"
-                app:layout_constraintTop_toTopOf="@+id/clEditLoadoutOffensiveSls">
+                    <EditText
+                        android:id="@+id/etEditLoadoutDefensiveMag"
+                        android:layout_width="28dp"
+                        android:layout_height="38dp"
+                        android:ems="10"
+                        android:inputType="number"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ivEditLoadoutDefensiveMag"
+                        app:layout_constraintVertical_bias="0.5" />
 
-                <EditText
-                    android:id="@+id/etEditLoadoutLevelsHP4"
-                    android:layout_width="28dp"
-                    android:layout_height="38dp"
-                    android:ems="10"
-                    android:inputType="number"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView9"
-                    app:layout_constraintVertical_bias="0.5" />
+                    <ImageView
+                        android:id="@+id/ivEditLoadoutDefensiveMag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutDefensiveMag"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.5"
+                        app:srcCompat="@drawable/magic_icon" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <ImageView
-                    android:id="@+id/imageView9"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clEditLoadoutDefensiveStb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsHP4"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5"
-                    app:srcCompat="@drawable/crush_icon" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clEditLoadoutOffensiveMag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/clEditLoadoutOffensiveCrs"
-                app:layout_constraintEnd_toStartOf="@+id/clEditLoadoutOffensiveRng"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/clEditLoadoutOffensiveCrs"
-                app:layout_constraintTop_toTopOf="@+id/clEditLoadoutOffensiveCrs">
-
-                <EditText
-                    android:id="@+id/etEditLoadoutLevelsHP5"
-                    android:layout_width="28dp"
-                    android:layout_height="38dp"
-                    android:ems="10"
-                    android:inputType="number"
+                    android:layout_marginBottom="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/clEditLoadoutDefensiveSls"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView10"
-                    app:layout_constraintVertical_bias="0.5" />
+                    app:layout_constraintStart_toStartOf="parent">
 
-                <ImageView
-                    android:id="@+id/imageView10"
+                    <EditText
+                        android:id="@+id/etEditLoadoutDefensiveStb"
+                        android:layout_width="28dp"
+                        android:layout_height="38dp"
+                        android:ems="10"
+                        android:inputType="number"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ivEditLoadoutDefensiveStb"
+                        app:layout_constraintVertical_bias="0.5" />
+
+                    <ImageView
+                        android:id="@+id/ivEditLoadoutDefensiveStb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutDefensiveStb"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.5"
+                        app:srcCompat="@drawable/stab_icon" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clEditLoadoutDefensiveSls"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsHP5"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/clEditLoadoutDefensiveStb"
+                    app:layout_constraintEnd_toStartOf="@+id/clEditLoadoutDefensiveCrs"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5"
-                    app:srcCompat="@drawable/magic_icon" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintStart_toEndOf="@+id/clEditLoadoutDefensiveStb"
+                    app:layout_constraintTop_toTopOf="@+id/clEditLoadoutDefensiveStb">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clEditLoadoutOffensiveStb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toStartOf="@+id/clEditLoadoutOffensiveSls"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="35dp">
+                    <EditText
+                        android:id="@+id/etEditLoadoutDefensiveSls"
+                        android:layout_width="28dp"
+                        android:layout_height="38dp"
+                        android:ems="10"
+                        android:inputType="number"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ivEditLoadoutDefensive"
+                        app:layout_constraintVertical_bias="0.5" />
 
-                <EditText
-                    android:id="@+id/etEditLoadoutLevelsHP2"
-                    android:layout_width="28dp"
-                    android:layout_height="38dp"
-                    android:ems="10"
-                    android:inputType="number"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView7"
-                    app:layout_constraintVertical_bias="0.5" />
+                    <ImageView
+                        android:id="@+id/ivEditLoadoutDefensive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutDefensiveSls"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.5"
+                        app:srcCompat="@drawable/slash_icon" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <ImageView
-                    android:id="@+id/imageView7"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clEditLoadoutDefensiveCrs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsHP2"
+                    app:layout_constraintBottom_toBottomOf="@+id/clEditLoadoutDefensiveSls"
+                    app:layout_constraintEnd_toStartOf="@+id/clEditLoadoutDefensiveMag"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/clEditLoadoutDefensiveSls"
+                    app:layout_constraintTop_toTopOf="@+id/clEditLoadoutDefensiveSls">
+
+                    <EditText
+                        android:id="@+id/etEditLoadoutDefensiveCrs"
+                        android:layout_width="28dp"
+                        android:layout_height="38dp"
+                        android:ems="10"
+                        android:inputType="number"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ivEditLoadoutDefensiveCrs"
+                        app:layout_constraintVertical_bias="0.5" />
+
+                    <ImageView
+                        android:id="@+id/ivEditLoadoutDefensiveCrs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutDefensiveCrs"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.5"
+                        app:srcCompat="@drawable/crush_icon" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clEditLoadoutDefensiveRng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/clEditLoadoutDefensiveMag"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5"
-                    app:srcCompat="@drawable/stab_icon" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintStart_toEndOf="@+id/clEditLoadoutDefensiveMag"
+                    app:layout_constraintTop_toTopOf="@+id/clEditLoadoutDefensiveMag">
 
+                    <EditText
+                        android:id="@+id/etEditLoadoutDefensiveRng"
+                        android:layout_width="28dp"
+                        android:layout_height="38dp"
+                        android:ems="10"
+                        android:inputType="number"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ivEditLoadoutDefensiveRng"
+                        app:layout_constraintVertical_bias="0.5" />
+
+                    <ImageView
+                        android:id="@+id/ivEditLoadoutDefensiveRng"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutDefensiveRng"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.5"
+                        app:srcCompat="@drawable/ranged_icon" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/btnEditLoadoutSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="Save"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cdEditLoadoutCombatStatsDefensiveBonuses" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

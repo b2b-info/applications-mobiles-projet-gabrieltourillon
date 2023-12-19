@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Item1"
+        android:icon="@drawable/ic_settings_icon"
+        android:title="Main Menu"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/item2"
+        android:title="View Loadouts"
+        app:showAsAction="ifRoom" />
+
+</menu>

@@ -95,6 +95,7 @@ class EditLoadoutActivity : AppCompatActivity() {
                 dataBase.loadoutDAO().insertLoadout(loadout)
             }
         }
+        Toast.makeText(this, "Loadout succesfully saved!", Toast.LENGTH_SHORT).show()
     }
 
     fun replaceLoadout()
@@ -106,8 +107,10 @@ class EditLoadoutActivity : AppCompatActivity() {
             withContext(Dispatchers.IO) {
                 val loadout = createLoadout()
                 dataBase.loadoutDAO().updateLoadout(loadout)
+
             }
         }
+        Toast.makeText(this, "Loadout succesfully replaced!", Toast.LENGTH_SHORT).show()
     }
 
     /**

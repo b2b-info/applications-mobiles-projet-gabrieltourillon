@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "932789808756",
+    "project_id": "osrsdex-t",
+    "storage_bucket": "osrsdex-t.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932789808756:android:323d89940f4959d0b82b21",
+        "android_client_info": {
+          "package_name": "com.example.osrsdex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB60OlU3Zk0mi7WZuUc5sMvSgw9UbzXRvI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,22 +1,18 @@
-package com.example.osrsdex.activities
+package com.example.osrsdex.activities.editloadoutactivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import com.example.osrsdex.R
+import com.example.osrsdex.activities.TAG
 import com.example.osrsdex.db.AppDatabase
-import com.example.osrsdex.db.CombatStats
-import com.example.osrsdex.db.Loadout
+import com.example.osrsdex.models.CombatStats
+import com.example.osrsdex.models.Loadout
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

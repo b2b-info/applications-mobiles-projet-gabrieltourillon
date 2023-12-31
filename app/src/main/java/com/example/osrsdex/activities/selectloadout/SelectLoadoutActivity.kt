@@ -1,4 +1,4 @@
-package com.example.osrsdex.activities
+package com.example.osrsdex.activities.selectloadout
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,28 +7,22 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.osrsdex.R
-import com.example.osrsdex.activities.selectloadout.*
+import com.example.osrsdex.activities.editloadoutactivity.EditLoadoutActivity
+import com.example.osrsdex.activities.selectloadout.recyclerview.SelectLoadoutRecyclerAdapter
 import com.example.osrsdex.db.AppDatabase
-import com.example.osrsdex.db.Loadout
+import com.example.osrsdex.models.Loadout
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SelectLoadoutViewModel() : ViewModel() {
-    val loadoutList: MutableList<Loadout> = mutableListOf()
-}
-
-const val LOADOUT = "LOADOUT"
-const val TAG = "OSRSDEX"
-
 class SelectLoadoutActivity : AppCompatActivity() {
+
     lateinit var recyclerView: RecyclerView
-    lateinit var adapter: LoadoutRecyclerAdapter
+    lateinit var adapter: SelectLoadoutRecyclerAdapter
     val viewModel: SelectLoadoutViewModel by viewModels()
     lateinit var etPlayerName: EditText
     lateinit var btnGetLoadouts: Button
@@ -42,7 +36,7 @@ class SelectLoadoutActivity : AppCompatActivity() {
         etPlayerName = findViewById(R.id.etGetLoadoutsByPlayerName)
         btnGetLoadouts = findViewById(R.id.btnGetLoadoutsByPlayerName)
 
-        adapter = LoadoutRecyclerAdapter(viewModel.loadoutList) {loadout -> clickEdit(loadout)}
+        adapter = SelectLoadoutRecyclerAdapter(viewModel.loadoutList) { loadout:Loadout -> clickEdit(loadout)}
 
         recyclerView.adapter = adapter
 
@@ -61,7 +55,7 @@ class SelectLoadoutActivity : AppCompatActivity() {
     }
 
     fun btnGetLoadoutsOnClick() {
-        var playerNameString = etPlayerName.getText().toString()
+        val playerNameString = etPlayerName.getText().toString()
         if (playerNameString.trim() == "") {
             //Empty Player Name
             Toast.makeText(this, "Please enter a player name", Toast.LENGTH_SHORT).show()

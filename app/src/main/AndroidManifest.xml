@@ -13,13 +13,13 @@
         android:theme="@style/Theme.OSRSDex"
         tools:targetApi="31">
         <activity
-            android:name=".activities.EditLoadoutActivity"
+            android:name=".activities.editloadoutactivity.EditLoadoutActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SelectLoadoutActivity"
+            android:name=".activities.selectloadout.SelectLoadoutActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.mainactivity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,11 +1,12 @@
-package com.example.osrsdex.activities
+package com.example.osrsdex.activities.mainactivity
 
-import android.app.Application
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.example.osrsdex.R
+import com.example.osrsdex.activities.editloadoutactivity.EditLoadoutActivity
+import com.example.osrsdex.activities.selectloadout.SelectLoadoutActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,5 +32,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun onClickTestButton()
+    {
+
+    }
 
 }

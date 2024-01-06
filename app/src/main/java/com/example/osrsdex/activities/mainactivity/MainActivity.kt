@@ -15,8 +15,10 @@ class MainActivity : AppCompatActivity() {
 
         val btnViewLoadouts: Button = findViewById(R.id.btnPlayerLoadoutsViewLoadout)
         val btnCreateLoadout: Button = findViewById(R.id.btnPlayerLoadoutsCreate)
+        val btnTester: Button = findViewById(R.id.btnTester)
         btnViewLoadouts.setOnClickListener(){onClickViewLoadouts()}
         btnCreateLoadout.setOnClickListener(){onClickCreateLoadout()}
+        btnTester.setOnClickListener(){onClickTestButton()}
 
     }
 
@@ -29,7 +31,6 @@ class MainActivity : AppCompatActivity() {
     {
         val intent = Intent(applicationContext, SelectLoadoutActivity::class.java)
         startActivity(intent)
-
     }
 
     fun onClickTestButton()

@@ -4,15 +4,17 @@
     <item
         android:id="@+id/action_main_menu"
         android:icon="@drawable/baseline_home_24"
-        android:title="Main Menu"
+        android:title="@string/menu_main_menu"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_view_loadout"
-        android:title="View Loadouts"
+        android:id="@+id/action_new_monster"
+        android:title="@string/menu_new_monster"
+        android:icon="@drawable/baseline_add_24"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_edit_loadout"
-        android:title="New Loadout"
+        android:id="@+id/action_view_monsters"
+        android:title="@string/menu_view_monsters"
+        android:icon="@drawable/baseline_pageview_24"
         app:showAsAction="ifRoom" />
 
 </menu>

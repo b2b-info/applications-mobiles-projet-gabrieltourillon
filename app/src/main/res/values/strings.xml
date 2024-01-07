@@ -4,4 +4,10 @@
     <string name="btnCreate">Create</string>
     <string name="btnEdit">Edit</string>
     <string name="btnView">View Loadouts</string>
+    <string name="menu_main_menu">Main menu</string>
+    <string name="menu_new_loadout">New Loadout</string>
+    <string name="menu_view_loadouts">View Loadouts</string>
+    <string name="menu_new_monster">New Loadout</string>
+    <string name="menu_view_monsters">View Loadouts</string>
+
 </resources>

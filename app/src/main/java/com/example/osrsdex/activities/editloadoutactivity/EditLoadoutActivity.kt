@@ -1,15 +1,20 @@
 package com.example.osrsdex.activities.editloadoutactivity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import com.example.osrsdex.R
 import com.example.osrsdex.activities.TAG
+import com.example.osrsdex.activities.mainactivity.MainActivity
 import com.example.osrsdex.db.AppDatabase
 import com.example.osrsdex.models.CombatStats
 import com.example.osrsdex.models.Loadout
@@ -25,6 +30,10 @@ class EditLoadoutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_loadout)
+
+        val toolbar: Toolbar = findViewById(R.id.editToolbar)
+        setSupportActionBar(toolbar)
+
         btnSave = findViewById(R.id.btnEditLoadoutSave)
         btnSave.setOnClickListener()
         {
@@ -34,6 +43,27 @@ class EditLoadoutActivity : AppCompatActivity() {
         loadoutName = findViewById(R.id.etEditLoadoutLoadoutName)
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_edit_loadout, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId)
+        {
+            R.id.action_main_menu -> startActivity(Intent(applicationContext, MainActivity::class.java))
+            R.id.action_view_loadouts ->  startActivity(Intent(applicationContext, MainActivity::class.java))
+            R.id.action_new_loadout -> newLoadout()
+            else-> return super.onOptionsItemSelected(item)
+        }
+        return true
+    }
+
+    private fun newLoadout() {
+        TODO("Not yet implemented")
+    }
+
 
     fun onClickSave()
     {

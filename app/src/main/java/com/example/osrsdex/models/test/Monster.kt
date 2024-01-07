@@ -9,6 +9,5 @@ data class Monster (
     override var entityName: String,
     override var stats: CombatStats?,
     override var atkStyle: String?,
-    var picture: String?
 
 ) : IEntity, Parcelable

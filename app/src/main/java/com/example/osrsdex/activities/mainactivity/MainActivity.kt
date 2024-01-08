@@ -4,20 +4,21 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import com.example.osrsdex.R
+import com.example.osrsdex.activities.TAG
 import com.example.osrsdex.activities.editloadoutactivity.EditLoadoutActivity
-import com.example.osrsdex.activities.selectloadout.SelectLoadoutActivity
+import com.example.osrsdex.activities.selectloadout.ViewLoadoutsActivity
+import com.example.osrsdex.models.CombatLevels
+import com.example.osrsdex.models.Player
 import com.example.osrsdex.network.HiScoreAPI
 import com.example.osrsdex.network.HiScoreAPIClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,30 +53,36 @@ class MainActivity : AppCompatActivity() {
         return true
     }*/
 
-    fun onClickCreateLoadout(){
+    private fun onClickCreateLoadout(){
         val intent = Intent(applicationContext, EditLoadoutActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickViewLoadouts()
+    private fun onClickViewLoadouts()
     {
-        val intent = Intent(applicationContext, SelectLoadoutActivity::class.java)
+        val intent = Intent(applicationContext, ViewLoadoutsActivity::class.java)
         startActivity(intent)
     }
 
-    fun onClickTestButton()
+    private fun onClickTestButton()
     {
         val client = HiScoreAPIClient.getInstance().create(HiScoreAPI::class.java)
+        val player: Player= Player("Gabeypoo", CombatLevels(60,76,64,75,66,76,77,59))
+        Log.d(TAG, "onClickTestButton: ${player.combatLevels.combatLevel}")
         lifecycleScope.launch {
             try
             {
-                val response = withContext(Dispatchers.IO){client.getMyStatsGameMode()}
+                val response = withContext(Dispatchers.IO){client.getMyStatsByGameMode()}
                 if(response.isSuccessful)
                 {
                     val body = response.body()
                     if(body != null)
                     {
-                        Log.d("OSRSDEX", "onClickTestButton: Successful request:" + body.toString())
+                        Log.d(TAG, "onClickTestButton: Successful request:" + body.toString())
+                    }
+                    else
+                    {
+                        Log.e(TAG, "onClickTestButton: didnt work")
                     }
                 }
             }

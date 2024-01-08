@@ -16,18 +16,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.osrsdex.R
 import com.example.osrsdex.activities.editloadoutactivity.EditLoadoutActivity
 import com.example.osrsdex.activities.mainactivity.MainActivity
-import com.example.osrsdex.activities.selectloadout.recyclerview.SelectLoadoutRecyclerAdapter
+import com.example.osrsdex.activities.selectloadout.recyclerview.ViewLoadoutsRecyclerAdapter
 import com.example.osrsdex.db.AppDatabase
 import com.example.osrsdex.models.Loadout
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SelectLoadoutActivity : AppCompatActivity() {
+class ViewLoadoutsActivity : AppCompatActivity() {
 
     lateinit var recyclerView: RecyclerView
-    lateinit var adapter: SelectLoadoutRecyclerAdapter
-    val viewModel: SelectLoadoutViewModel by viewModels()
+    lateinit var adapter: ViewLoadoutsRecyclerAdapter
+    val viewModel: ViewLoadoutsViewModel by viewModels()
     lateinit var etPlayerName: EditText
     lateinit var btnGetLoadouts: Button
 
@@ -43,7 +43,7 @@ class SelectLoadoutActivity : AppCompatActivity() {
         etPlayerName = findViewById(R.id.etGetLoadoutsByPlayerName)
         btnGetLoadouts = findViewById(R.id.btnGetLoadoutsByPlayerName)
 
-        adapter = SelectLoadoutRecyclerAdapter(viewModel.loadoutList) { loadout:Loadout -> clickEdit(loadout)}
+        adapter = ViewLoadoutsRecyclerAdapter(viewModel.loadoutList) { loadout:Loadout -> clickEdit(loadout)}
 
         recyclerView.adapter = adapter
 

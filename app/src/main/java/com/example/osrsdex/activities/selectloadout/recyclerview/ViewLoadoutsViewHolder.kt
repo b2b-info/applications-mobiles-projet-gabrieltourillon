@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.osrsdex.R
 import com.example.osrsdex.models.Loadout
 
-class SelectLoadoutViewHolder(itemView: View, onClick:(Loadout) -> Unit) : RecyclerView.ViewHolder(itemView)
+class ViewLoadoutsViewHolder(itemView: View, onClick:(Loadout) -> Unit) : RecyclerView.ViewHolder(itemView)
 {
     val name: TextView
     val description: TextView

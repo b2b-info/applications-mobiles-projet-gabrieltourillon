@@ -15,8 +15,9 @@ import androidx.lifecycle.lifecycleScope
 import com.example.osrsdex.R
 import com.example.osrsdex.activities.TAG
 import com.example.osrsdex.activities.mainactivity.MainActivity
+import com.example.osrsdex.activities.selectloadout.ViewLoadoutsActivity
 import com.example.osrsdex.db.AppDatabase
-import com.example.osrsdex.models.CombatStats
+import com.example.osrsdex.models.CombatBonuses
 import com.example.osrsdex.models.Loadout
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -53,7 +54,7 @@ class EditLoadoutActivity : AppCompatActivity() {
         when(item.itemId)
         {
             R.id.action_main_menu -> startActivity(Intent(applicationContext, MainActivity::class.java))
-            R.id.action_view_loadouts ->  startActivity(Intent(applicationContext, MainActivity::class.java))
+            R.id.action_view_loadouts ->  startActivity(Intent(applicationContext, ViewLoadoutsActivity::class.java))
             R.id.action_new_loadout -> newLoadout()
             else-> return super.onOptionsItemSelected(item)
         }
@@ -61,7 +62,10 @@ class EditLoadoutActivity : AppCompatActivity() {
     }
 
     private fun newLoadout() {
-        TODO("Not yet implemented")
+        /*TODO("Implement: " +
+                "Ask if user is sure he wants to reset the fields")*/
+        //Not sure if this is the right way to do this but this lets the user press < to go back to the activity, using finish just closes the activity so you cant go back
+        startActivity(Intent(applicationContext, this::class.java))
     }
 
 
@@ -74,7 +78,7 @@ class EditLoadoutActivity : AppCompatActivity() {
         {
             //Check if loadout already in db
             lifecycleScope.launch{
-                val loadoutExists= (withContext(Dispatchers.IO) {dataBase.loadoutDAO().isLoadoutExists( createLoadout().playerName, createLoadout().loadoutName)})
+                val loadoutExists= (withContext(Dispatchers.IO) {dataBase.loadoutDAO().isLoadoutExists( createLoadout().loadoutPlayerName, createLoadout().loadoutName)})
                 if(loadoutExists)
                 {
                     Log.d(TAG, "onClickSave: Exists")
@@ -167,13 +171,6 @@ class EditLoadoutActivity : AppCompatActivity() {
         val loadoutNameText: EditText = findViewById(R.id.etEditLoadoutLoadoutName)
         val loadoutDescriptionText: EditText = findViewById(R.id.etEditLoadoutLoadoutDescription)
         ///Combat Stats///
-        //Levels//
-        val lvlHpText: EditText = findViewById(R.id.etEditLoadoutLevelsHP)
-        val lvlAtkText: EditText = findViewById(R.id.etEditLoadoutLevelsAtk)
-        val lvlStrText: EditText = findViewById(R.id.etEditLoadoutLevelsStr)
-        val lvlDefText: EditText = findViewById(R.id.etEditLoadoutLevelsDef)
-        val lvlMagText: EditText = findViewById(R.id.etEditLoadoutLevelsMag)
-        val lvlRngText: EditText = findViewById(R.id.etEditLoadoutLevelsRng)
         //Offensive//
         val bnsStbText: EditText = findViewById(R.id.etEditLoadoutOffensiveStb)
         val bnsSlsText: EditText = findViewById(R.id.etEditLoadoutOffensiveSls)
@@ -197,12 +194,6 @@ class EditLoadoutActivity : AppCompatActivity() {
 
         //Map of stat strings we wanna convert to int
         val mapStatStrings = mapOf<String,String>(
-            "lvlHp" to lvlHpText.text.toString(),
-            "lvlAtk" to lvlAtkText.text.toString(),
-            "lvlStr" to lvlStrText.text.toString(),
-            "lvlDef" to lvlDefText.text.toString(),
-            "lvlMag" to lvlMagText.text.toString(),
-            "lvlRng" to lvlRngText.text.toString(),
             "bnsStb" to bnsStbText.text.toString(),
             "bnsSls" to bnsSlsText.text.toString(),
             "bnsCrs" to bnsCrsText.text.toString(),
@@ -226,23 +217,17 @@ class EditLoadoutActivity : AppCompatActivity() {
             //If the EditText is not blank
             if(entry.value.isNotBlank() && entry.value.isNotEmpty())
             {
-                mapStats.put(entry.key, entry.value.toInt())
+                mapStats[entry.key] = entry.value.toInt()
             }
             else
             {
-                mapStats.put(entry.key, 0)
+                mapStats[entry.key] = 0
             }
         }
 
 
         ///Create Stats object
-        val stats = CombatStats(
-            mapStats["lvlHp"],
-            mapStats["lvlAtk"],
-            mapStats["lvlStr"],
-            mapStats["lvlDef"],
-            mapStats["lvlMag"],
-            mapStats["lvlRng"],
+        val stats = CombatBonuses(
             mapStats["bnsStb"],
             mapStats["bnsSls"],
             mapStats["bnsCrs"],
@@ -264,8 +249,7 @@ class EditLoadoutActivity : AppCompatActivity() {
             loadoutNameText.text.toString(),
             playerNameText.text.toString(),
             loadoutDescriptionText.text.toString(),
-            stats,
-            atkStyle
+            stats
             )
     }
 

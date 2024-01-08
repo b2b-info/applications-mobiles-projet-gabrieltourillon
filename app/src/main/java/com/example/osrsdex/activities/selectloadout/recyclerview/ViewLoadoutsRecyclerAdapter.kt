@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.osrsdex.R
 import com.example.osrsdex.models.Loadout
 
-class SelectLoadoutRecyclerAdapter(private var listLoadout:List<Loadout>, val onClick: (Loadout) -> Unit) : RecyclerView.Adapter<SelectLoadoutViewHolder>()
+class ViewLoadoutsRecyclerAdapter(private var listLoadout:List<Loadout>, val onClick: (Loadout) -> Unit) : RecyclerView.Adapter<ViewLoadoutsViewHolder>()
 {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelectLoadoutViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewLoadoutsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_loadouts, parent, false)
-        return SelectLoadoutViewHolder(view, onClick)
+        return ViewLoadoutsViewHolder(view, onClick)
     }
 
 
@@ -18,7 +18,7 @@ class SelectLoadoutRecyclerAdapter(private var listLoadout:List<Loadout>, val on
         return listLoadout.size
     }
 
-    override fun onBindViewHolder(holder: SelectLoadoutViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewLoadoutsViewHolder, position: Int) {
         holder.bind(listLoadout.get(position))
     }
 }

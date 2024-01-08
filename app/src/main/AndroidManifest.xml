@@ -20,7 +20,7 @@
             android:name=".activities.editloadoutactivity.EditLoadoutActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.selectloadout.SelectLoadoutActivity"
+            android:name=".activities.selectloadout.ViewLoadoutsActivity"
             android:exported="false" />
         <activity
             android:name=".activities.mainactivity.MainActivity"

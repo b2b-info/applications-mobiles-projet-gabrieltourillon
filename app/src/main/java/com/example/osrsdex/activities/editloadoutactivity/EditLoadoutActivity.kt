@@ -69,16 +69,19 @@ class EditLoadoutActivity : AppCompatActivity() {
     }
 
 
-    fun onClickSave()
+    private fun onClickSave()
     {
         val dataBase = AppDatabase.getDatabase(applicationContext)
 
         //Verify values:
-        if(playerName.text.isNotEmpty() && loadoutName.text.isNotEmpty())
+        if(validateLoadout())
         {
             //Check if loadout already in db
             lifecycleScope.launch{
-                val loadoutExists= (withContext(Dispatchers.IO) {dataBase.loadoutDAO().isLoadoutExists( createLoadout().loadoutPlayerName, createLoadout().loadoutName)})
+                //TODO Fix this dogshit to make it use the viewmodel instead of calling createLoadout() twice here and again when it saves/replaces the loadout
+                val loadoutExists= (withContext(Dispatchers.IO) {
+                    dataBase.loadoutDAO().isLoadoutExists(createLoadout().loadoutName, createLoadout().loadoutPlayerName)
+                })
                 if(loadoutExists)
                 {
                     Log.d(TAG, "onClickSave: Exists")
@@ -89,17 +92,13 @@ class EditLoadoutActivity : AppCompatActivity() {
                     Log.d(TAG, "onClickSave: Doesn't exist")
                     saveLoadout()
                 }
-
             }
-
-
         }
-
     }
 
-    fun setupAlertSaveReplaceLoadout()
+    private fun setupAlertSaveReplaceLoadout()
     {
-        var alertBuilder = AlertDialog.Builder(this)
+        val alertBuilder = AlertDialog.Builder(this)
         alertBuilder.setTitle("Replace Loadout?")
         alertBuilder.setMessage("A loadout with the same player and same name already exists in the database, would you like to overwrite it")
         alertBuilder.setPositiveButton("Replace"){
@@ -116,13 +115,33 @@ class EditLoadoutActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    fun saveLoadout()
+    /*
+    TODO('
+        IMPLEMENT SAVING PLAYER IF HE DOESNT EXIST IN DB...IF WE HAVE A PLAYER IN VIEWMODEL CHECK IF HE EXISTS, IF HE DOES UPDATE HIM OTHERWISE SAVE HIM AND HIS LEVELS
+        Add and implement functionalities for :
+            get player levels button:
+            {
+                Checks if player exists
+                -If yes gets player levels from db
+                -If no tries to get player levels from the web and adds player to viewmodel
+            }
+            update player levels button:
+            {
+                ...
+            }
+
+     ')
+     */
+
+
+    private fun saveLoadout()
     {
         val dataBase = AppDatabase.getDatabase(applicationContext)
         Log.d(TAG, "saveLoadout: ")
 
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
+                //TODO(IMPLEMENT CHECKING IF PLAYER EXISTS AND ADDING HIM TO PLAYER DB IF HE DOESN'T)
                 val loadout = createLoadout()
                 dataBase.loadoutDAO().insertLoadout(loadout)
             }
@@ -130,7 +149,7 @@ class EditLoadoutActivity : AppCompatActivity() {
         Toast.makeText(this, "Loadout succesfully saved!", Toast.LENGTH_SHORT).show()
     }
 
-    fun replaceLoadout()
+    private fun replaceLoadout()
     {
         val dataBase = AppDatabase.getDatabase(applicationContext)
         Log.d(TAG, "replaceLoadout: ")
@@ -139,7 +158,6 @@ class EditLoadoutActivity : AppCompatActivity() {
             withContext(Dispatchers.IO) {
                 val loadout = createLoadout()
                 dataBase.loadoutDAO().updateLoadout(loadout)
-
             }
         }
         Toast.makeText(this, "Loadout succesfully replaced!", Toast.LENGTH_SHORT).show()
@@ -148,22 +166,19 @@ class EditLoadoutActivity : AppCompatActivity() {
     /**
      * Returns true if valid, false if not valid
      */
-    fun validateLoadout():Boolean
+    private fun validateLoadout():Boolean
     {
         //Make sure our pk values aren't empty
-        if(playerName.text.isNotEmpty() && loadoutName.text.isNotEmpty())
-        {
-            return true
-        }
-        else
-        {
+        return if(playerName.text.isNotBlank() && loadoutName.text.isNotBlank()) {
+            true
+        } else {
             //Tell user that the pk values are required
             Toast.makeText(this, "Player name and Loadout name are required", Toast.LENGTH_SHORT).show()
-            return false
+            false
         }
     }
 
-    fun createLoadout():Loadout
+    private fun createLoadout():Loadout
     {
         ////EditText View Variables////
         //Descriptors//

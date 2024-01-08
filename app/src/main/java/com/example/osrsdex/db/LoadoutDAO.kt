@@ -11,8 +11,8 @@ interface LoadoutDAO {
     @Query("SELECT * FROM Loadout")
     suspend fun getAll(): List<Loadout>
 
-    @Query("SELECT * FROM Loadout WHERE loadoutPlayerName LIKE (:pn)")
-    suspend fun getAllWherePlayerName(pn: String) : List<Loadout>
+    @Query("SELECT * FROM Loadout WHERE loadoutPlayerName LIKE (:playerName)")
+    suspend fun getAllWherePlayerName(playerName: String) : List<Loadout>
 
     @Insert(entity = Loadout::class)
     suspend fun insertLoadout(loadout: Loadout)
@@ -20,7 +20,7 @@ interface LoadoutDAO {
     @Update
     suspend fun updateLoadout(loadout: Loadout)
 
-    @Query("SELECT EXISTS(SELECT * FROM Loadout WHERE loadoutName LIKE :ln AND loadoutPlayerName LIKE :pn LIMIT 1)")
-    fun isLoadoutExists(pn: String, ln: String) : Boolean
+    @Query("SELECT EXISTS(SELECT * FROM Loadout WHERE loadoutName LIKE :loadoutName AND loadoutPlayerName LIKE :playerName LIMIT 1)")
+    fun isLoadoutExists(loadoutName: String, playerName: String) : Boolean
 
 }

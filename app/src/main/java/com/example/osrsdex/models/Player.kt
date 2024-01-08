@@ -1,6 +1,7 @@
 package com.example.osrsdex.models
 
 import android.os.Parcelable
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
@@ -10,5 +11,5 @@ import kotlinx.parcelize.Parcelize
 data class Player (
     @PrimaryKey
     val playerName: String,
-    val combatLevels: CombatLevels
+    @Embedded val combatLevels: CombatLevels
 ):Parcelable

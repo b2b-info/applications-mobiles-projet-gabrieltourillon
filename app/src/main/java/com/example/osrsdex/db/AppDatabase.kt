@@ -5,10 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.osrsdex.models.Loadout
+import com.example.osrsdex.models.Player
 
-@Database(entities = [Loadout::class], version = 1)
+@Database(entities = [Player::class,Loadout::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
-
+    abstract fun playerDAO(): PlayerDAO
     abstract fun loadoutDAO(): LoadoutDAO
 
     companion object {

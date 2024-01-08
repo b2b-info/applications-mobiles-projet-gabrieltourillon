@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import com.example.osrsdex.R
 import com.example.osrsdex.activities.TAG
 import com.example.osrsdex.activities.editloadoutactivity.EditLoadoutActivity
 import com.example.osrsdex.activities.selectloadout.ViewLoadoutsActivity
+import com.example.osrsdex.db.AppDatabase
 import com.example.osrsdex.models.CombatLevels
 import com.example.osrsdex.models.Player
 import com.example.osrsdex.network.HiScoreAPI
@@ -67,8 +69,6 @@ class MainActivity : AppCompatActivity() {
     private fun onClickTestButton()
     {
         val client = HiScoreAPIClient.getInstance().create(HiScoreAPI::class.java)
-        val player: Player= Player("Gabeypoo", CombatLevels(60,76,64,75,66,76,77,59))
-        Log.d(TAG, "onClickTestButton: ${player.combatLevels.combatLevel}")
         lifecycleScope.launch {
             try
             {
@@ -91,6 +91,20 @@ class MainActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
+    }
+
+    private fun testPlayerRoom()
+    {
+        val dataBase = AppDatabase.getDatabase(applicationContext)
+
+        val player: Player= Player("Gabeypoo", CombatLevels(60,76,64,75,66,76,77,59))
+        Log.d(TAG, "onClickTestButton: ${player.combatLevels.combatLevel}")
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                dataBase.playerDAO()
+            }
+        }
+        Toast.makeText(this, "Loadout succesfully saved!", Toast.LENGTH_SHORT).show()
     }
 
 }

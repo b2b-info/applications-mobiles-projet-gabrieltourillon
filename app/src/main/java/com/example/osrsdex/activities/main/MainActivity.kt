@@ -1,4 +1,4 @@
-package com.example.osrsdex.activities.mainactivity
+package com.example.osrsdex.activities.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,17 +10,17 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import com.example.osrsdex.R
 import com.example.osrsdex.activities.TAG
-import com.example.osrsdex.activities.editloadoutactivity.EditLoadoutActivity
-import com.example.osrsdex.activities.selectloadout.ViewLoadoutsActivity
+import com.example.osrsdex.activities.loadout.editloadout.EditLoadoutActivity
+import com.example.osrsdex.activities.loadout.viewloadouts.ViewLoadoutsActivity
 import com.example.osrsdex.db.AppDatabase
 import com.example.osrsdex.models.CombatLevels
+import com.example.osrsdex.models.Loadout
 import com.example.osrsdex.models.Player
 import com.example.osrsdex.network.HiScoreAPI
 import com.example.osrsdex.network.HiScoreAPIClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +68,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun onClickTestButton()
     {
+        testPlayerRoom()
+
         val client = HiScoreAPIClient.getInstance().create(HiScoreAPI::class.java)
         lifecycleScope.launch {
             try
@@ -97,11 +99,12 @@ class MainActivity : AppCompatActivity() {
     {
         val dataBase = AppDatabase.getDatabase(applicationContext)
 
-        val player: Player= Player("Gabeypoo", CombatLevels(60,76,64,75,66,76,77,59))
+        val player: Player= Player("Gabeypoo", CombatLevels(null,76,64,75,66,76,77,59))
+        //val loadout = Loadout("Bungus", "")
         Log.d(TAG, "onClickTestButton: ${player.combatLevels.combatLevel}")
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
-                dataBase.playerDAO()
+                dataBase.playerDAO().insertPlayer(player)
             }
         }
         Toast.makeText(this, "Loadout succesfully saved!", Toast.LENGTH_SHORT).show()

@@ -10,10 +10,13 @@ import com.example.osrsdex.models.Player
 @Dao
 interface PlayerDAO {
     @Insert(entity = Player::class)
-    suspend fun insertLoadout(player:Player)
+    suspend fun insertPlayer(player:Player)
 
     @Update
-    suspend fun updateLoadout(player:Player)
+    suspend fun updatePlayer(player:Player)
+
+    @Query("SELECT EXISTS(SELECT * FROM Player WHERE playerName LIKE :playerName LIMIT 1)")
+    fun isPlayerExists(playerName: String) : Boolean
 
     @Query("SELECT * FROM Player " +
            "JOIN Loadout ON Player.playerName = Loadout.LoadoutName")

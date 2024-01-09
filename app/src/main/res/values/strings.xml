@@ -9,5 +9,9 @@
     <string name="menu_view_loadouts">View Loadouts</string>
     <string name="menu_new_monster">New Loadout</string>
     <string name="menu_view_monsters">View Loadouts</string>
+    <string name="view_loadouts_list_empty">\"No loadouts found belonging to player\"</string>
+    <string name="view_loadouts_list_error">An error occured while searching for loadouts</string>
+    <string name="view_loadouts_no_player">No such player exists in database</string>
+    <string name="view_loadouts_name_blank">Please enter a player name</string>
 
 </resources>

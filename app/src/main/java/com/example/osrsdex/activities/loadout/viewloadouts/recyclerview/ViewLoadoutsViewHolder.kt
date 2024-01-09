@@ -1,4 +1,4 @@
-package com.example.osrsdex.activities.selectloadout.recyclerview
+package com.example.osrsdex.activities.loadout.viewloadouts.recyclerview
 
 import android.view.View
 import android.widget.Button

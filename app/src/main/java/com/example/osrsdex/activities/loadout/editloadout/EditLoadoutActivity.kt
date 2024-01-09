@@ -1,48 +1,56 @@
-package com.example.osrsdex.activities.editloadoutactivity
+package com.example.osrsdex.activities.loadout.editloadout
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
+import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import com.example.osrsdex.R
 import com.example.osrsdex.activities.TAG
-import com.example.osrsdex.activities.mainactivity.MainActivity
-import com.example.osrsdex.activities.selectloadout.ViewLoadoutsActivity
+import com.example.osrsdex.activities.loadout.viewloadouts.ViewLoadoutsActivity
+import com.example.osrsdex.activities.main.MainActivity
 import com.example.osrsdex.db.AppDatabase
 import com.example.osrsdex.models.CombatBonuses
+import com.example.osrsdex.models.CombatLevels
 import com.example.osrsdex.models.Loadout
+import com.example.osrsdex.models.Player
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
 
 class EditLoadoutActivity : AppCompatActivity() {
     private lateinit var btnSave: Button
     private lateinit var playerName: EditText
     private lateinit var loadoutName: EditText
+    private val viewModel:EditLoadoutsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_loadout)
 
-        val toolbar: Toolbar = findViewById(R.id.editToolbar)
+        val toolbar: Toolbar = findViewById(R.id.editLoadoutToolbar)
         setSupportActionBar(toolbar)
+
+        playerName = findViewById(R.id.etEditLoadoutPlayerName)
+        loadoutName = findViewById(R.id.etEditLoadoutLoadoutName)
 
         btnSave = findViewById(R.id.btnEditLoadoutSave)
         btnSave.setOnClickListener()
         {
             onClickSave()
         }
-        playerName = findViewById(R.id.etEditLoadoutPlayerName)
-        loadoutName = findViewById(R.id.etEditLoadoutLoadoutName)
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -76,10 +84,11 @@ class EditLoadoutActivity : AppCompatActivity() {
         //Verify values:
         if(validateLoadout())
         {
+            verifyAddPlayer()
             //Check if loadout already in db
             lifecycleScope.launch{
                 //TODO Fix this dogshit to make it use the viewmodel instead of calling createLoadout() twice here and again when it saves/replaces the loadout
-                val loadoutExists= (withContext(Dispatchers.IO) {
+                val loadoutExists = (withContext(Dispatchers.IO) {
                     dataBase.loadoutDAO().isLoadoutExists(createLoadout().loadoutName, createLoadout().loadoutPlayerName)
                 })
                 if(loadoutExists)
@@ -129,7 +138,6 @@ class EditLoadoutActivity : AppCompatActivity() {
             {
                 ...
             }
-
      ')
      */
 
@@ -139,14 +147,33 @@ class EditLoadoutActivity : AppCompatActivity() {
         val dataBase = AppDatabase.getDatabase(applicationContext)
         Log.d(TAG, "saveLoadout: ")
 
-        lifecycleScope.launch {
-            withContext(Dispatchers.IO) {
+        lifecycleScope.launch(Dispatchers.IO) {
                 //TODO(IMPLEMENT CHECKING IF PLAYER EXISTS AND ADDING HIM TO PLAYER DB IF HE DOESN'T)
                 val loadout = createLoadout()
                 dataBase.loadoutDAO().insertLoadout(loadout)
-            }
         }
         Toast.makeText(this, "Loadout succesfully saved!", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun verifyAddPlayer()
+    {
+        val dataBase = AppDatabase.getDatabase(applicationContext)
+        //TODO This implementation sucks and needs to be changed when the API functionality is added
+        val player = Player(playerName.text.toString(), CombatLevels())
+        lifecycleScope.launch {
+            if(!(withContext(Dispatchers.IO) { dataBase.playerDAO().isPlayerExists(player.playerName) }))
+            {
+                addPlayer(player)
+            }
+        }
+    }
+
+    private fun addPlayer(player: Player)
+    {
+        val dataBase = AppDatabase.getDatabase(applicationContext)
+        lifecycleScope.launch(Dispatchers.IO) {
+            dataBase.playerDAO().insertPlayer(player)
+        }
     }
 
     private fun replaceLoadout()
@@ -180,6 +207,7 @@ class EditLoadoutActivity : AppCompatActivity() {
 
     private fun createLoadout():Loadout
     {
+        val imm = InputMethodManager.HIDE_IMPLICIT_ONLY
         ////EditText View Variables////
         //Descriptors//
         val playerNameText: EditText = findViewById(R.id.etEditLoadoutPlayerName)
@@ -260,12 +288,14 @@ class EditLoadoutActivity : AppCompatActivity() {
             bnsPry
         )
 
-        return Loadout(
+        val ret  = Loadout(
             loadoutNameText.text.toString(),
             playerNameText.text.toString(),
             loadoutDescriptionText.text.toString(),
             stats
             )
+        Log.d(TAG, "createLoadout: $ret")
+        return ret
     }
 
 }

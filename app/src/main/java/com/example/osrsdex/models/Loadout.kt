@@ -13,9 +13,10 @@ import kotlinx.parcelize.Parcelize
             ForeignKey(
                 entity = Player::class,
                 parentColumns = ["playerName"],
-                childColumns = ["loadoutName"],
+                childColumns = ["loadoutPlayerName"],
                 onUpdate = ForeignKey.CASCADE,
-                onDelete = ForeignKey.CASCADE)])
+                onDelete = ForeignKey.CASCADE,
+                deferred = true)])
 data class Loadout(
     var loadoutName: String,
     var loadoutPlayerName: String,

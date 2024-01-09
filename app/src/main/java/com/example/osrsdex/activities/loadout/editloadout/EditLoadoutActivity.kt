@@ -8,14 +8,14 @@ import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
-import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.osrsdex.R
 import com.example.osrsdex.activities.TAG
 import com.example.osrsdex.activities.loadout.viewloadouts.ViewLoadoutsActivity
@@ -25,16 +25,18 @@ import com.example.osrsdex.models.CombatBonuses
 import com.example.osrsdex.models.CombatLevels
 import com.example.osrsdex.models.Loadout
 import com.example.osrsdex.models.Player
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
 class EditLoadoutActivity : AppCompatActivity() {
-    private lateinit var btnSave: Button
+    private lateinit var fabSave: FloatingActionButton
     private lateinit var playerName: EditText
     private lateinit var loadoutName: EditText
-    private val viewModel:EditLoadoutsViewModel by viewModels()
+    private val viewModel:EditLoadoutViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,10 +48,22 @@ class EditLoadoutActivity : AppCompatActivity() {
         playerName = findViewById(R.id.etEditLoadoutPlayerName)
         loadoutName = findViewById(R.id.etEditLoadoutLoadoutName)
 
-        btnSave = findViewById(R.id.btnEditLoadoutSave)
-        btnSave.setOnClickListener()
+        fabSave = findViewById(R.id.floatingActionButtonSave)
+        fabSave.setOnClickListener()
         {
             onClickSave()
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect { uiState ->
+                    uiState.userMessage?.let {
+                        Snackbar.make(findViewById(R.id.etGetLoadoutsByPlayerName), it, Snackbar.LENGTH_LONG).show()
+                        // Once the message is displayed and dismissed, notify the ViewModel.
+                        viewModel.messageShown()
+                    }
+                }
+            }
         }
     }
 
@@ -108,8 +122,8 @@ class EditLoadoutActivity : AppCompatActivity() {
     private fun setupAlertSaveReplaceLoadout()
     {
         val alertBuilder = AlertDialog.Builder(this)
-        alertBuilder.setTitle("Replace Loadout?")
-        alertBuilder.setMessage("A loadout with the same player and same name already exists in the database, would you like to overwrite it")
+        alertBuilder.setTitle(resources.getString(R.string.alert_save_loadout_title))
+        alertBuilder.setMessage(resources.getString(R.string.alert_save_loadout_message))
         alertBuilder.setPositiveButton("Replace"){
             dialog, which ->
             replaceLoadout()
@@ -119,7 +133,6 @@ class EditLoadoutActivity : AppCompatActivity() {
                 dialog, which ->
                 //Don't do anything
         }
-
         val dialog: AlertDialog = alertBuilder.create()
         dialog.show()
     }

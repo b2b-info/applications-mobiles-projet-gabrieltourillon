@@ -5,6 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButtonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:contentDescription="@string/save_button"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        app:srcCompat="@android:drawable/ic_menu_save" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -78,7 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:ems="10"
+                    android:ems="14"
                     android:hint="Enter player name"
                     android:inputType="text"
                     android:textSize="14sp"
@@ -90,7 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:ems="10"
+                    android:ems="14"
                     android:hint="Enter loadout name"
                     android:inputType="text"
                     android:textSize="14sp"
@@ -102,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:ems="18"
+                    android:ems="20"
                     android:hint="Enter description of loadout"
                     android:inputType="text"
                     android:textSize="14sp"
@@ -174,8 +184,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutLevelsHP"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsHP"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -215,8 +225,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutLevelsAtk"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsAtk"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -255,8 +265,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutLevelsStr"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsStr"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -313,8 +323,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutLevelsDef"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsDef"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -336,8 +346,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutLevelsMag"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsMag"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -377,8 +387,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutLevelsRng"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsRng"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -468,8 +478,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutOffensiveStb"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveStb"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -509,8 +519,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutOffensive"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveSls"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -550,8 +560,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutOffensiveCrs"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveCrs"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -591,8 +601,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutOffensiveMag"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveMag"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -632,8 +642,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutOffensiveRng"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveRng"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -673,8 +683,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutOffensiveStrMel"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveStrMel"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -714,8 +724,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutOffensiveStrMag"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveStrMag"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -754,8 +764,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutOffensiveStrRng"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveStrRng"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -832,8 +842,8 @@
 
                                 <ImageView
                                     android:id="@+id/ivEditLoadoutDefensiveMag"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
                                     app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutDefensiveMag"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.5"
@@ -873,8 +883,8 @@
 
                                 <ImageView
                                     android:id="@+id/ivEditLoadoutDefensiveStb"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
                                     app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutDefensiveStb"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.5"
@@ -914,8 +924,8 @@
 
                                 <ImageView
                                     android:id="@+id/ivEditLoadoutDefensive"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
                                     app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutDefensiveSls"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.5"
@@ -955,8 +965,8 @@
 
                                 <ImageView
                                     android:id="@+id/ivEditLoadoutDefensiveCrs"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
                                     app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutDefensiveCrs"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.5"
@@ -994,8 +1004,8 @@
 
                                 <ImageView
                                     android:id="@+id/ivEditLoadoutDefensiveRng"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
                                     app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutDefensiveRng"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.5"
@@ -1008,17 +1018,6 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <Button
-                    android:id="@+id/btnEditLoadoutSave"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Save"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cdEditLoadoutCombatStatsDefensiveBonuses" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

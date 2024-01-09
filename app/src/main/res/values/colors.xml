@@ -2,5 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="light_brown">#BE43250E</color>
+    <color name="light_brown">#EEBC7B2B</color>
+    <color name="my_light_primary">#BE83522E</color>
+    <color name="my_light_accent">#BC741C</color>
+    <color name="my_night_primary">#BE351F0F</color>
+    <color name="my_night_accent">#513304</color>
+    <color name="my_light_text">#FF000000</color>
+    <color name="my_night_text">#FFFFFFFF</color>
+
 </resources>

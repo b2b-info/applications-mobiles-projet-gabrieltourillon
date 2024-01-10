@@ -1,17 +1,28 @@
 <resources>
     <string name="app_name">OSRSDex</string>
-    <string name="tvPlayerLoadouts">Player Loadouts</string>
-    <string name="btnCreate">Create</string>
-    <string name="btnEdit">Edit</string>
-    <string name="btnView">View Loadouts</string>
+    <string name="tv_player_loadouts">Player Loadouts</string>
+    <string name="btn_create">Create</string>
+    <string name="btn_edit">Edit</string>
+    <string name="btn_view">View Loadouts</string>
     <string name="menu_main_menu">Main menu</string>
     <string name="menu_new_loadout">New Loadout</string>
     <string name="menu_view_loadouts">View Loadouts</string>
     <string name="menu_new_monster">New Loadout</string>
     <string name="menu_view_monsters">View Loadouts</string>
-    <string name="view_loadouts_list_empty">\"No loadouts found belonging to player\"</string>
+    <string name="view_loadouts_list_empty">No loadouts found belonging to player</string>
     <string name="view_loadouts_list_error">An error occured while searching for loadouts</string>
     <string name="view_loadouts_no_player">No such player exists in database</string>
     <string name="view_loadouts_name_blank">Please enter a player name</string>
+    <string name="save_button">Save</string>
+    <string name="alert_save_loadout_title">Replace Loadout?</string>
+    <string name="alert_save_loadout_message">A loadout with the same player and same name already exists in the database, would you like to overwrite it</string>
+    <string name="edit_loadout_error_insert">Error inserting loadout into database.</string>
+    <string name="edit_loadout_error_validation">Error during validation of entries.</string>
+    <string name="edit_loadout_success_insert">Loadout successfully saved!</string>
+    <string name="edit_loadout_error_required_fields">Player name and loadout name are required.</string>
+    <string name="edit_loadout_success_replace">Loadout succesfully replaced!</string>
+    <string name="edit_loadout_no_levels">Could not find player levels online.</string>
+    <string name="edit_loadout_yes_levels_insert">Player added with Combat Levels.</string>
+    <string name="edit_loadout_error_replace_null">Unknown error replacing loadout. Please try again.</string>
 
 </resources>

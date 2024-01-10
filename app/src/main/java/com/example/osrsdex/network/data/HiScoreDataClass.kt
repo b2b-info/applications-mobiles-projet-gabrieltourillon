@@ -1,5 +1,6 @@
 package com.example.example
 
+import com.example.osrsdex.models.CombatLevels
 import com.google.gson.annotations.SerializedName
 
 

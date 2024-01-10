@@ -5,6 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButtonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:contentDescription="@string/save_button"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        app:srcCompat="@android:drawable/ic_menu_save" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,7 +38,8 @@
                 android:id="@+id/clEditLoadoutDescriptors"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:elevation="4dp"
+                android:outlineProvider="bounds"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -78,8 +89,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:ems="10"
+                    android:ems="14"
                     android:hint="Enter player name"
+                    android:imeOptions="actionNext"
                     android:inputType="text"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@+id/etEditLoadoutLoadoutName"
@@ -90,8 +102,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:ems="10"
+                    android:ems="14"
                     android:hint="Enter loadout name"
+                    android:imeOptions="actionNext"
                     android:inputType="text"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/tvEditLoadoutLoadoutNameLbl"
@@ -101,12 +114,11 @@
                     android:id="@+id/etEditLoadoutLoadoutDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:ems="18"
+                    android:ems="20"
                     android:hint="Enter description of loadout"
+                    android:imeOptions="actionNext"
                     android:inputType="text"
                     android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvEditLoadoutLoadoutDescriptionLbl" />
@@ -117,7 +129,7 @@
                 android:id="@+id/clEditLoadoutCombatStats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -129,6 +141,7 @@
                     android:layout_height="wrap_content"
                     android:text="Combat Stats:"
                     android:textSize="20sp"
+                    android:layout_margin="8dp"
                     app:layout_constraintBottom_toTopOf="@+id/clEditLoadoutCombatStatsLevels"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -140,7 +153,9 @@
                     android:id="@+id/clEditLoadoutCombatStatsLevels"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_margin="4dp"
+                    android:outlineProvider="bounds"
+                    android:elevation="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -158,10 +173,11 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@+id/tvEditLoadoutLevelsTitle"
-                        tools:layout_editor_absoluteX="1dp">
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvEditLoadoutLevelsTitle">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/clEditLoadoutLevelsHP"
@@ -174,9 +190,9 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutLevelsHP"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsHP"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                app:layout_constraintBottom_toTopOf="@+id/tvEditLoadoutLevelsHP"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -184,16 +200,14 @@
                                 app:layout_constraintVertical_bias="0.5"
                                 app:srcCompat="@drawable/hitpoints_icon" />
 
-                            <EditText
-                                android:id="@+id/etEditLoadoutLevelsHP"
+                            <TextView
+                                android:id="@+id/tvEditLoadoutLevelsHP"
                                 android:layout_width="28dp"
                                 android:layout_height="38dp"
                                 android:ems="10"
-                                android:inputType="number"
                                 android:maxLength="3"
                                 android:maxLines="1"
                                 android:minLines="1"
-
                                 android:singleLine="true"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -215,9 +229,9 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutLevelsAtk"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsAtk"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                app:layout_constraintBottom_toTopOf="@+id/tvEditLoadoutLevelsAtk"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -225,12 +239,11 @@
                                 app:layout_constraintVertical_bias="0.5"
                                 app:srcCompat="@drawable/attack_icon" />
 
-                            <EditText
-                                android:id="@+id/etEditLoadoutLevelsAtk"
+                            <TextView
+                                android:id="@+id/tvEditLoadoutLevelsAtk"
                                 android:layout_width="28dp"
                                 android:layout_height="38dp"
                                 android:ems="10"
-                                android:inputType="number"
                                 android:maxLength="3"
                                 android:maxLines="1"
                                 android:minLines="1"
@@ -255,9 +268,9 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutLevelsStr"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsStr"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                app:layout_constraintBottom_toTopOf="@+id/tvEditLoadoutLevelsStr"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -265,12 +278,11 @@
                                 app:layout_constraintVertical_bias="0.5"
                                 app:srcCompat="@drawable/strength_icon" />
 
-                            <EditText
-                                android:id="@+id/etEditLoadoutLevelsStr"
+                            <TextView
+                                android:id="@+id/tvEditLoadoutLevelsStr"
                                 android:layout_width="28dp"
                                 android:layout_height="38dp"
                                 android:ems="10"
-                                android:inputType="number"
                                 android:maxLength="3"
                                 android:maxLines="1"
                                 android:minLines="1"
@@ -293,16 +305,15 @@
                             app:layout_constraintStart_toEndOf="@+id/clEditLoadoutLevelsStr"
                             app:layout_constraintTop_toTopOf="@+id/clEditLoadoutLevelsStr">
 
-                            <EditText
-                                android:id="@+id/etEditLoadoutLevelsDef"
+                            <TextView
+                                android:id="@+id/tvEditLoadoutLevelsDef"
                                 android:layout_width="28dp"
                                 android:layout_height="38dp"
                                 android:ems="10"
-                                android:inputType="number"
                                 android:maxLength="3"
                                 android:maxLines="1"
-                                android:minLines="1"
 
+                                android:minLines="1"
                                 android:singleLine="true"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -313,9 +324,9 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutLevelsDef"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsDef"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                app:layout_constraintBottom_toTopOf="@+id/tvEditLoadoutLevelsDef"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -336,9 +347,9 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutLevelsMag"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsMag"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                app:layout_constraintBottom_toTopOf="@+id/tvEditLoadoutLevelsMag"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -346,16 +357,15 @@
                                 app:layout_constraintVertical_bias="0.5"
                                 app:srcCompat="@drawable/magic_icon" />
 
-                            <EditText
-                                android:id="@+id/etEditLoadoutLevelsMag"
+                            <TextView
+                                android:id="@+id/tvEditLoadoutLevelsMag"
                                 android:layout_width="28dp"
                                 android:layout_height="38dp"
                                 android:ems="10"
-                                android:inputType="number"
                                 android:maxLength="3"
                                 android:maxLines="1"
-                                android:minLines="1"
 
+                                android:minLines="1"
                                 android:singleLine="true"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -377,9 +387,9 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutLevelsRng"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutLevelsRng"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                app:layout_constraintBottom_toTopOf="@+id/tvEditLoadoutLevelsRng"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -387,16 +397,14 @@
                                 app:layout_constraintVertical_bias="0.5"
                                 app:srcCompat="@drawable/ranged_icon" />
 
-                            <EditText
-                                android:id="@+id/etEditLoadoutLevelsRng"
+                            <TextView
+                                android:id="@+id/tvEditLoadoutLevelsRng"
                                 android:layout_width="28dp"
                                 android:layout_height="38dp"
                                 android:ems="10"
-                                android:inputType="number"
                                 android:maxLength="3"
                                 android:maxLines="1"
                                 android:minLines="1"
-
                                 android:singleLine="true"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -413,7 +421,9 @@
                     android:id="@+id/clEditLoadoutCombatStatsOffensiveBonuses"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_margin="4dp"
+                    android:outlineProvider="bounds"
+                    android:elevation="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -453,11 +463,12 @@
                                 android:layout_width="28dp"
                                 android:layout_height="38dp"
                                 android:ems="10"
+                                android:imeOptions="actionNext"
                                 android:inputType="number"
                                 android:maxLength="3"
                                 android:maxLines="1"
-                                android:minLines="1"
 
+                                android:minLines="1"
                                 android:singleLine="true"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -468,8 +479,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutOffensiveStb"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveStb"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -494,11 +505,12 @@
                                 android:layout_width="28dp"
                                 android:layout_height="38dp"
                                 android:ems="10"
+                                android:imeOptions="actionNext"
                                 android:inputType="number"
                                 android:maxLength="3"
                                 android:maxLines="1"
-                                android:minLines="1"
 
+                                android:minLines="1"
                                 android:singleLine="true"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -509,8 +521,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutOffensive"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveSls"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -535,11 +547,12 @@
                                 android:layout_width="28dp"
                                 android:layout_height="38dp"
                                 android:ems="10"
+                                android:imeOptions="actionNext"
                                 android:inputType="number"
                                 android:maxLength="3"
                                 android:maxLines="1"
-                                android:minLines="1"
 
+                                android:minLines="1"
                                 android:singleLine="true"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -550,8 +563,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutOffensiveCrs"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveCrs"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -576,11 +589,12 @@
                                 android:layout_width="28dp"
                                 android:layout_height="38dp"
                                 android:ems="10"
+                                android:imeOptions="actionNext"
                                 android:inputType="number"
                                 android:maxLength="3"
                                 android:maxLines="1"
-                                android:minLines="1"
 
+                                android:minLines="1"
                                 android:singleLine="true"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -591,8 +605,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutOffensiveMag"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveMag"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -617,11 +631,12 @@
                                 android:layout_width="28dp"
                                 android:layout_height="38dp"
                                 android:ems="10"
+                                android:imeOptions="actionNext"
                                 android:inputType="number"
                                 android:maxLength="3"
                                 android:maxLines="1"
-                                android:minLines="1"
 
+                                android:minLines="1"
                                 android:singleLine="true"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -632,8 +647,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutOffensiveRng"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveRng"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -658,11 +673,12 @@
                                 android:layout_width="28dp"
                                 android:layout_height="38dp"
                                 android:ems="10"
+                                android:imeOptions="actionNext"
                                 android:inputType="number"
                                 android:maxLength="3"
                                 android:maxLines="1"
-                                android:minLines="1"
 
+                                android:minLines="1"
                                 android:singleLine="true"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -673,8 +689,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutOffensiveStrMel"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveStrMel"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -699,11 +715,12 @@
                                 android:layout_width="28dp"
                                 android:layout_height="38dp"
                                 android:ems="10"
+                                android:imeOptions="actionNext"
                                 android:inputType="number"
                                 android:maxLength="3"
                                 android:maxLines="1"
-                                android:minLines="1"
 
+                                android:minLines="1"
                                 android:singleLine="true"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -714,8 +731,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutOffensiveStrMag"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveStrMag"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -739,11 +756,12 @@
                                 android:layout_width="28dp"
                                 android:layout_height="38dp"
                                 android:ems="10"
+                                android:imeOptions="actionNext"
                                 android:inputType="number"
                                 android:maxLength="3"
                                 android:maxLines="1"
-                                android:minLines="1"
 
+                                android:minLines="1"
                                 android:singleLine="true"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -754,8 +772,8 @@
 
                             <ImageView
                                 android:id="@+id/ivEditLoadoutOffensiveStrRng"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutOffensiveStrRng"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
@@ -779,7 +797,9 @@
                         android:id="@+id/clEditLoadoutCombatStatsDefensiveBonuses"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_margin="4dp"
+                        android:outlineProvider="bounds"
+                        android:elevation="4dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
@@ -817,11 +837,12 @@
                                     android:layout_width="28dp"
                                     android:layout_height="38dp"
                                     android:ems="10"
+                                    android:imeOptions="actionNext"
                                     android:inputType="number"
                                     android:maxLength="3"
                                     android:maxLines="1"
-                                    android:minLines="1"
 
+                                    android:minLines="1"
                                     android:singleLine="true"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -832,8 +853,8 @@
 
                                 <ImageView
                                     android:id="@+id/ivEditLoadoutDefensiveMag"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
                                     app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutDefensiveMag"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.5"
@@ -869,12 +890,13 @@
                                     app:layout_constraintHorizontal_bias="0.5"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/ivEditLoadoutDefensiveStb"
-                                    app:layout_constraintVertical_bias="0.5" />
+                                    app:layout_constraintVertical_bias="0.5"
+                                    android:imeOptions="actionNext" />
 
                                 <ImageView
                                     android:id="@+id/ivEditLoadoutDefensiveStb"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
                                     app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutDefensiveStb"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.5"
@@ -899,11 +921,12 @@
                                     android:layout_width="28dp"
                                     android:layout_height="38dp"
                                     android:ems="10"
+                                    android:imeOptions="actionNext"
                                     android:inputType="number"
                                     android:maxLength="3"
                                     android:maxLines="1"
-                                    android:minLines="1"
 
+                                    android:minLines="1"
                                     android:singleLine="true"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -914,8 +937,8 @@
 
                                 <ImageView
                                     android:id="@+id/ivEditLoadoutDefensive"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
                                     app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutDefensiveSls"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.5"
@@ -940,11 +963,12 @@
                                     android:layout_width="28dp"
                                     android:layout_height="38dp"
                                     android:ems="10"
+                                    android:imeOptions="actionNext"
                                     android:inputType="number"
                                     android:maxLength="3"
                                     android:maxLines="1"
-                                    android:minLines="1"
 
+                                    android:minLines="1"
                                     android:singleLine="true"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -955,8 +979,8 @@
 
                                 <ImageView
                                     android:id="@+id/ivEditLoadoutDefensiveCrs"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
                                     app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutDefensiveCrs"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.5"
@@ -980,6 +1004,7 @@
                                     android:layout_width="28dp"
                                     android:layout_height="38dp"
                                     android:ems="10"
+                                    android:imeOptions="actionDone"
                                     android:inputType="number"
                                     android:maxLength="3"
                                     android:maxLines="1"
@@ -994,8 +1019,8 @@
 
                                 <ImageView
                                     android:id="@+id/ivEditLoadoutDefensiveRng"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
                                     app:layout_constraintBottom_toTopOf="@+id/etEditLoadoutDefensiveRng"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.5"
@@ -1008,17 +1033,6 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <Button
-                    android:id="@+id/btnEditLoadoutSave"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Save"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cdEditLoadoutCombatStatsDefensiveBonuses" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

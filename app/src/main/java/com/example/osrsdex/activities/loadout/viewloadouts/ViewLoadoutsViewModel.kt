@@ -1,16 +1,12 @@
 package com.example.osrsdex.activities.loadout.viewloadouts
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import com.example.osrsdex.R
 import com.example.osrsdex.db.AppDatabase
 import com.example.osrsdex.models.Loadout
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,17 +14,12 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-data class LoadoutListUIState(
-    val userMessage:String? = null,
-    val snackbarLenght: Int = Snackbar.LENGTH_LONG
-)
-
 class ViewLoadoutsViewModel(application: Application) : AndroidViewModel(application) {
     val loadoutList: MutableLiveData<List<Loadout>> = MutableLiveData()
 
     //UIState for displaying snackbars
-    private val _uiState = MutableStateFlow(LoadoutListUIState())
-    val uiState: StateFlow<LoadoutListUIState> = _uiState
+    private val _uiState = MutableStateFlow(ViewLoadoutsUIState())
+    val uiState: StateFlow<ViewLoadoutsUIState> = _uiState
     fun updateLoadoutList(playerName: String)
     {
         if (playerName.isBlank()) {

@@ -1,0 +1,9 @@
+Il manque de la fonctionalitee, c'etait suppose etre une calculatrice pour un jeu(Old school runescape ou OSRS) mais essayer d'apprendre les regles de google et comment bien utiliser mvvm m'a pris trop de temps.
+
+Je suis content d'une partie de mon code mais le cote database n'est pas super bien encapsuler, j'aurai pu faire mieux avec plus de temps.
+
+Je n'ai pas utilise de toasts parce que je n'etais pas sur ou les utiliser, peut-etre pour les message d'insertion/update dans le db?
+
+Je voulais le remettre hier mais a la derniere minute j'ai eu des erreurs de transactions room et je n'arrivai pas a trouver le probleme alors j'ai du reecrire la majorite de mon code cote db.
+
+J'aime bien kotlin, j'aimerai bien apprendre plus comment bien utiliser mvvm et surtout comment faire des UI avec compose C:.

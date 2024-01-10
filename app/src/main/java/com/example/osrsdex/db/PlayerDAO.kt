@@ -6,6 +6,7 @@ import androidx.room.Query
 import androidx.room.Update
 import com.example.osrsdex.models.Loadout
 import com.example.osrsdex.models.Player
+import retrofit2.http.GET
 
 @Dao
 interface PlayerDAO {
@@ -17,6 +18,9 @@ interface PlayerDAO {
 
     @Query("SELECT EXISTS(SELECT * FROM Player WHERE playerName LIKE :playerName LIMIT 1)")
     fun isPlayerExists(playerName: String) : Boolean
+
+    @Query("SELECT * FROM Player WHERE playerName = :playerName")
+    fun getPlayer(playerName: String):Player
 
     @Query("SELECT * FROM Player " +
            "JOIN Loadout ON Player.playerName = Loadout.LoadoutName")

@@ -40,7 +40,7 @@ class ViewLoadoutsListFragment :Fragment(){
 
         viewModel.loadoutList.observe(viewLifecycleOwner) {
             if (it != null) {
-                val adapter = ViewLoadoutsRecyclerAdapter(it) {loadout:Loadout -> clickEdit(loadout)}
+                val adapter = ViewLoadoutsRecyclerAdapter(it)
                 recyclerView.adapter = adapter
             }
         }

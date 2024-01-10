@@ -36,6 +36,7 @@ class EditLoadoutActivity : AppCompatActivity() {
     private lateinit var fabSave: FloatingActionButton
     private lateinit var playerName: EditText
     private lateinit var loadoutName: EditText
+    private lateinit var btnGetPlayerLevels:Button
     private val viewModel:EditLoadoutViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,13 +55,20 @@ class EditLoadoutActivity : AppCompatActivity() {
             onClickSave()
         }
 
+
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
                     uiState.userMessage?.let {
-                        Snackbar.make(findViewById(R.id.etGetLoadoutsByPlayerName), it, Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(findViewById(R.id.floatingActionButtonSave), it, Snackbar.LENGTH_LONG).show()
                         // Once the message is displayed and dismissed, notify the ViewModel.
                         viewModel.messageShown()
+                    }
+                    uiState.isNeedShowAlert?.let {
+                        if(it)
+                        {
+                            setupAlertSaveReplaceLoadout()
+                        }
                     }
                 }
             }
@@ -77,46 +85,15 @@ class EditLoadoutActivity : AppCompatActivity() {
         {
             R.id.action_main_menu -> startActivity(Intent(applicationContext, MainActivity::class.java))
             R.id.action_view_loadouts ->  startActivity(Intent(applicationContext, ViewLoadoutsActivity::class.java))
-            R.id.action_new_loadout -> newLoadout()
+            R.id.action_new_loadout -> onMenuNewLoadout()
             else-> return super.onOptionsItemSelected(item)
         }
         return true
     }
 
-    private fun newLoadout() {
-        /*TODO("Implement: " +
-                "Ask if user is sure he wants to reset the fields")*/
+    private fun onMenuNewLoadout() {
         //Not sure if this is the right way to do this but this lets the user press < to go back to the activity, using finish just closes the activity so you cant go back
         startActivity(Intent(applicationContext, this::class.java))
-    }
-
-
-    private fun onClickSave()
-    {
-        val dataBase = AppDatabase.getDatabase(applicationContext)
-
-        //Verify values:
-        if(validateLoadout())
-        {
-            verifyAddPlayer()
-            //Check if loadout already in db
-            lifecycleScope.launch{
-                //TODO Fix this dogshit to make it use the viewmodel instead of calling createLoadout() twice here and again when it saves/replaces the loadout
-                val loadoutExists = (withContext(Dispatchers.IO) {
-                    dataBase.loadoutDAO().isLoadoutExists(createLoadout().loadoutName, createLoadout().loadoutPlayerName)
-                })
-                if(loadoutExists)
-                {
-                    Log.d(TAG, "onClickSave: Exists")
-                    setupAlertSaveReplaceLoadout()
-                }
-                else
-                {
-                    Log.d(TAG, "onClickSave: Doesn't exist")
-                    saveLoadout()
-                }
-            }
-        }
     }
 
     private fun setupAlertSaveReplaceLoadout()
@@ -126,106 +103,67 @@ class EditLoadoutActivity : AppCompatActivity() {
         alertBuilder.setMessage(resources.getString(R.string.alert_save_loadout_message))
         alertBuilder.setPositiveButton("Replace"){
             dialog, which ->
-            replaceLoadout()
+                viewModel.replaceLoadout()
+                viewModel.alertShown()
         }
         .setNegativeButton("Cancel")
         {
-                dialog, which ->
-                //Don't do anything
+            dialog, which ->
+                viewModel.alertShown()
         }
         val dialog: AlertDialog = alertBuilder.create()
         dialog.show()
     }
 
-    /*
-    TODO('
-        IMPLEMENT SAVING PLAYER IF HE DOESNT EXIST IN DB...IF WE HAVE A PLAYER IN VIEWMODEL CHECK IF HE EXISTS, IF HE DOES UPDATE HIM OTHERWISE SAVE HIM AND HIS LEVELS
-        Add and implement functionalities for :
-            get player levels button:
-            {
-                Checks if player exists
-                -If yes gets player levels from db
-                -If no tries to get player levels from the web and adds player to viewmodel
-            }
-            update player levels button:
-            {
-                ...
-            }
-     ')
-     */
-
-
-    private fun saveLoadout()
+    private fun onClickSave()
     {
-        val dataBase = AppDatabase.getDatabase(applicationContext)
-        Log.d(TAG, "saveLoadout: ")
-
-        lifecycleScope.launch(Dispatchers.IO) {
-                //TODO(IMPLEMENT CHECKING IF PLAYER EXISTS AND ADDING HIM TO PLAYER DB IF HE DOESN'T)
-                val loadout = createLoadout()
-                dataBase.loadoutDAO().insertLoadout(loadout)
+        if(isRequiredFieldsNotBlank())
+        {
+            viewModel.onClickSaveLoadout(intDataMap = getLoadoutIntData(), stringDataMap = getLoadoutStringData())
+            val imm = InputMethodManager.HIDE_IMPLICIT_ONLY
         }
-        Toast.makeText(this, "Loadout succesfully saved!", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun verifyAddPlayer()
-    {
-        val dataBase = AppDatabase.getDatabase(applicationContext)
-        //TODO This implementation sucks and needs to be changed when the API functionality is added
-        val player = Player(playerName.text.toString(), CombatLevels())
-        lifecycleScope.launch {
-            if(!(withContext(Dispatchers.IO) { dataBase.playerDAO().isPlayerExists(player.playerName) }))
-            {
-                addPlayer(player)
-            }
+        else{
+            viewModel.displayMessage(resources.getString(R.string.edit_loadout_error_required_fields))
         }
     }
 
-    private fun addPlayer(player: Player)
-    {
-        val dataBase = AppDatabase.getDatabase(applicationContext)
-        lifecycleScope.launch(Dispatchers.IO) {
-            dataBase.playerDAO().insertPlayer(player)
-        }
-    }
 
-    private fun replaceLoadout()
-    {
-        val dataBase = AppDatabase.getDatabase(applicationContext)
-        Log.d(TAG, "replaceLoadout: ")
 
-        lifecycleScope.launch {
-            withContext(Dispatchers.IO) {
-                val loadout = createLoadout()
-                dataBase.loadoutDAO().updateLoadout(loadout)
-            }
-        }
-        Toast.makeText(this, "Loadout succesfully replaced!", Toast.LENGTH_SHORT).show()
-    }
-
-    /**
-     * Returns true if valid, false if not valid
-     */
-    private fun validateLoadout():Boolean
+    //This is some trash, get rid of it for real data binding or just use an object with string fields instead of a map, it's so unsafe
+    private fun getLoadoutStringData():Map<String,String>
     {
-        //Make sure our pk values aren't empty
-        return if(playerName.text.isNotBlank() && loadoutName.text.isNotBlank()) {
-            true
-        } else {
-            //Tell user that the pk values are required
-            Toast.makeText(this, "Player name and Loadout name are required", Toast.LENGTH_SHORT).show()
-            false
-        }
-    }
-
-    private fun createLoadout():Loadout
-    {
-        val imm = InputMethodManager.HIDE_IMPLICIT_ONLY
-        ////EditText View Variables////
+        ///EditText View String Variables///
         //Descriptors//
         val playerNameText: EditText = findViewById(R.id.etEditLoadoutPlayerName)
         val loadoutNameText: EditText = findViewById(R.id.etEditLoadoutLoadoutName)
         val loadoutDescriptionText: EditText = findViewById(R.id.etEditLoadoutLoadoutDescription)
+
+        return mapOf<String,String>(
+            "playerName" to playerNameText.text.toString(),
+            "loadoutName" to loadoutNameText.text.toString(),
+            "loadoutDescription" to loadoutDescriptionText.text.toString()
+        )
+    }
+
+    /**
+     * Not blank = true
+     * Blank = false
+     */
+    private fun isRequiredFieldsNotBlank():Boolean
+    {
+        //Required fields
+        val playerNameText: EditText = findViewById(R.id.etEditLoadoutPlayerName)
+        val loadoutNameText: EditText = findViewById(R.id.etEditLoadoutLoadoutName)
+        Log.d(TAG, "isRequiredFieldsNotBlank: |" + playerNameText.text.toString() +'|'+ loadoutNameText.text.toString()+'|')
+        if(playerNameText.text.isNotBlank() && loadoutNameText.text.isNotBlank()) {
+            return true
+        }
+        return false
+    }
+
+    private fun getLoadoutIntData():Map<String,String>
+    {
+        ////EditText View Int Variables////
         ///Combat Stats///
         //Offensive//
         val bnsStbText: EditText = findViewById(R.id.etEditLoadoutOffensiveStb)
@@ -243,13 +181,8 @@ class EditLoadoutActivity : AppCompatActivity() {
         val defMagText: EditText = findViewById(R.id.etEditLoadoutDefensiveMag)
         val defRngText: EditText = findViewById(R.id.etEditLoadoutDefensiveRng)
 
-        //Not implemented yet
-        val atkSpeed = 0
-        val bnsPry = 0
-        val atkStyle = "Slash"
-
         //Map of stat strings we wanna convert to int
-        val mapStatStrings = mapOf<String,String>(
+        return mapOf<String,String>(
             "bnsStb" to bnsStbText.text.toString(),
             "bnsSls" to bnsSlsText.text.toString(),
             "bnsCrs" to bnsCrsText.text.toString(),
@@ -264,51 +197,6 @@ class EditLoadoutActivity : AppCompatActivity() {
             "defMag" to defMagText.text.toString(),
             "defRng" to defRngText.text.toString()
         )
-
-        val mapStats = mutableMapOf<String, Int>()
-
-        for (entry in mapStatStrings.entries.iterator())
-        {
-            Log.d(TAG, "createLoadout: " + entry.value.toString() + " value:" + entry.value.isNotBlank() )
-            //If the EditText is not blank
-            if(entry.value.isNotBlank() && entry.value.isNotEmpty())
-            {
-                mapStats[entry.key] = entry.value.toInt()
-            }
-            else
-            {
-                mapStats[entry.key] = 0
-            }
-        }
-
-
-        ///Create Stats object
-        val stats = CombatBonuses(
-            mapStats["bnsStb"],
-            mapStats["bnsSls"],
-            mapStats["bnsCrs"],
-            mapStats["bnsMag"],
-            mapStats["bnsRng"],
-            mapStats["bnsStrMel"],
-            mapStats["bnsStrMag"],
-            mapStats["bnsStrRng"],
-            mapStats["defStb"],
-            mapStats["defSls"],
-            mapStats["defCrs"],
-            mapStats["defMag"],
-            mapStats["defRng"],
-            atkSpeed,
-            bnsPry
-        )
-
-        val ret  = Loadout(
-            loadoutNameText.text.toString(),
-            playerNameText.text.toString(),
-            loadoutDescriptionText.text.toString(),
-            stats
-            )
-        Log.d(TAG, "createLoadout: $ret")
-        return ret
     }
 
 }

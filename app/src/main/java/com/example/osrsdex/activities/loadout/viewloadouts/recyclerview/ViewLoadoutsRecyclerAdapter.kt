@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.osrsdex.R
 import com.example.osrsdex.models.Loadout
 
-class ViewLoadoutsRecyclerAdapter(private var listLoadout:List<Loadout>, private val onClick: (Loadout) -> Unit) : RecyclerView.Adapter<ViewLoadoutsViewHolder>()
+class ViewLoadoutsRecyclerAdapter(private var listLoadout:List<Loadout>) : RecyclerView.Adapter<ViewLoadoutsViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewLoadoutsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_loadouts_list_item, parent, false)
-        return ViewLoadoutsViewHolder(view, onClick)
+        return ViewLoadoutsViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewLoadoutsViewHolder, position: Int) {

@@ -21,7 +21,7 @@ data class Loadout(
     var loadoutName: String,
     var loadoutPlayerName: String,
     var description: String?,
-    @Embedded var stats: CombatBonuses?
+    @Embedded var combatBonuses: CombatBonuses?
 ) : Parcelable
 {
     @IgnoredOnParcel

@@ -68,7 +68,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun onClickTestButton()
     {
-        testPlayerRoom()
 
         val client = HiScoreAPIClient.getInstance().create(HiScoreAPI::class.java)
         lifecycleScope.launch {

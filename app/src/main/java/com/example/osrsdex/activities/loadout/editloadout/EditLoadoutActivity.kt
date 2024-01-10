@@ -56,6 +56,7 @@ class EditLoadoutActivity : AppCompatActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
                     uiState.userMessage?.let {
+                        //This too complicated idk what am doing
                         val snack:BaseTransientBottomBar<Snackbar> = Snackbar.make(fabSave, it, Snackbar.LENGTH_LONG)
                         snack.addCallback(object: BaseTransientBottomBar.BaseCallback<Snackbar>(){
                             override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {

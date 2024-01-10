@@ -131,7 +131,7 @@ class EditLoadoutViewModel(application: Application): AndroidViewModel(applicati
                 player = playerCheck
             } else {
                 player = Player(playerName = playerName, CombatLevels())
-                withContext(Dispatchers.Main){ displayMessage(getApplication<Application>().getString(R.string.edit_loadout_no_levels))}
+                displayMessage(getApplication<Application>().getString(R.string.edit_loadout_no_levels))
             }
         }
         //Show player

@@ -1,12 +1,14 @@
 package com.example.osrsdex.activities.loadout.editloadout
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.example.HiScoreDataClass
 import com.example.osrsdex.R
+import com.example.osrsdex.TAG
 import com.example.osrsdex.db.AppDatabase
 import com.example.osrsdex.models.CombatLevels
 import com.example.osrsdex.models.Loadout
@@ -21,11 +23,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class EditLoadoutViewModel(application: Application): AndroidViewModel(application){
-    private var _player: MutableLiveData<Player> = MutableLiveData()
+    private var _shownPlayer: MutableLiveData<Player> = MutableLiveData()
     private var _loadout: MutableLiveData<Loadout> = MutableLiveData()
-    //
-    val player: LiveData<Player> = MutableLiveData()
-    val loadout: LiveData<Loadout> = MutableLiveData()
+    val shownPlayer: LiveData<Player> = _shownPlayer
+    val loadout: LiveData<Loadout> = _loadout
 
     //UIState for displaying snackbars
     private var _uiState = MutableStateFlow(EditLoadoutUIState())
@@ -78,12 +79,7 @@ class EditLoadoutViewModel(application: Application): AndroidViewModel(applicati
     {
         val dataBase = AppDatabase.getDatabase(getApplication<Application>().applicationContext)
         viewModelScope.launch(Dispatchers.IO) {
-            var player: Player? = getPlayerWithLevelsAPI(loadout.loadoutPlayerName)
-            if (player == null)
-            {
-                //If we couldnt get the levels we just make a player without levels
-                player = Player(playerName = loadout.loadoutPlayerName, CombatLevels())
-            }
+            val player = getCurrentPlayer(playerName = loadout.loadoutPlayerName)
             if(dataBase.loadoutDAO().insertLoadoutWithPlayer(loadout = loadout, player = player))
             {
                 displayMessage(getApplication<Application>().getString(R.string.edit_loadout_success_insert))
@@ -111,17 +107,39 @@ class EditLoadoutViewModel(application: Application): AndroidViewModel(applicati
     private suspend fun replaceLoadout(loadout: Loadout)
     {
         val dataBase = AppDatabase.getDatabase(getApplication<Application>().applicationContext)
-        var player: Player? = getPlayerWithLevelsAPI(loadout.loadoutPlayerName)
-        if (player == null) {
-            //If we couldnt get the levels we just make a player without levels and tell the user
-            player = Player(playerName = loadout.loadoutPlayerName, CombatLevels())
-            //TODO('TELL USER COULDNT GET LEVELS')
-        }
+        val player = getCurrentPlayer(loadout.loadoutPlayerName)
 
         if (dataBase.loadoutDAO().updateLoadoutWithPlayer(loadout, player)) {
             displayMessage(getApplication<Application>().getString(R.string.edit_loadout_success_replace))
         }
     }
+
+    /**
+     * Tries to get player levels from the api or db and show them thru the object shownPlayer
+     * Tries to get levels from api, if that fails tries to get them from the db if that fails uses CombatLevel() constructor
+     */
+    private suspend fun getCurrentPlayer(playerName: String):Player
+    {
+        val dataBase = AppDatabase.getDatabase(getApplication<Application>().applicationContext)
+        var player: Player? = getPlayerWithLevelsAPI(playerName = playerName)
+        if (player == null)
+        {
+            val playerCheck = dataBase.playerDAO().getPlayer(playerName = playerName)
+            //WE ONLY NEED TO TELL USER THERE WAS AN ISSUE GETTING LEVELS IF PLAYER LEVELS WERE NEVER PUT IN
+            //We use the fact that in OSRS it's impossible for combatLevel to be 0 to check if they were ever gotten from the API and put in our db
+            if(playerCheck?.combatLevels?.combatLevel != null && playerCheck.combatLevels.combatLevel!! > 0) {
+                player = playerCheck
+            } else {
+                player = Player(playerName = playerName, CombatLevels())
+                withContext(Dispatchers.Main){ displayMessage(getApplication<Application>().getString(R.string.edit_loadout_no_levels))}
+            }
+        }
+        //Show player
+        withContext(Dispatchers.Main) {updateShownPlayer(player)}
+        //Return player
+        return player
+    }
+
 
     private suspend fun getPlayerWithLevelsAPI(playerName: String):Player? {
         val client = HiScoreAPIClient.getInstance().create(HiScoreAPI::class.java)
@@ -145,5 +163,10 @@ class EditLoadoutViewModel(application: Application): AndroidViewModel(applicati
             e.printStackTrace()
         }
         return playerReturned
+    }
+
+    private fun updateShownPlayer(player: Player)
+    {
+        _shownPlayer.value = player
     }
 }

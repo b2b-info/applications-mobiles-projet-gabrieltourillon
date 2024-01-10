@@ -21,7 +21,7 @@
     <string name="edit_loadout_success_insert">Loadout successfully saved!</string>
     <string name="edit_loadout_error_required_fields">Player name and loadout name are required.</string>
     <string name="edit_loadout_success_replace">Loadout succesfully replaced!</string>
-    <string name="edit_loadout_no_levels_insert">Player added but could not find player levels online.</string>
+    <string name="edit_loadout_no_levels">Could not find player levels online.</string>
     <string name="edit_loadout_yes_levels_insert">Player added with Combat Levels.</string>
     <string name="edit_loadout_error_replace_null">Unknown error replacing loadout. Please try again.</string>
 

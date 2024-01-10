@@ -20,7 +20,7 @@ interface PlayerDAO {
     suspend fun isPlayerExists(playerName: String) : Boolean
 
     @Query("SELECT * FROM Player WHERE playerName = :playerName")
-    suspend fun getPlayer(playerName: String):Player
+    suspend fun getPlayer(playerName: String):Player?
 
     @Query("SELECT * FROM Player " +
            "JOIN Loadout ON Player.playerName = Loadout.LoadoutName")

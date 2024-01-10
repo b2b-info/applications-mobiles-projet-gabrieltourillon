@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -19,9 +20,13 @@ import com.example.osrsdex.R
 import com.example.osrsdex.TAG
 import com.example.osrsdex.activities.loadout.viewloadouts.ViewLoadoutsActivity
 import com.example.osrsdex.activities.main.MainActivity
+import com.example.osrsdex.models.Player
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class EditLoadoutActivity : AppCompatActivity() {
@@ -47,14 +52,19 @@ class EditLoadoutActivity : AppCompatActivity() {
             onClickSave()
         }
 
-
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
                     uiState.userMessage?.let {
-                        Snackbar.make(findViewById(R.id.floatingActionButtonSave), it, Snackbar.LENGTH_LONG).show()
-                        // Once the message is displayed and dismissed, notify the ViewModel.
-                        viewModel.messageShown()
+                        val snack:BaseTransientBottomBar<Snackbar> = Snackbar.make(fabSave, it, Snackbar.LENGTH_LONG)
+                        snack.addCallback(object: BaseTransientBottomBar.BaseCallback<Snackbar>(){
+                            override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+                                super.onDismissed(transientBottomBar, event)
+                                // Once the message is displayed and dismissed, notify the ViewModel.
+                                viewModel.messageShown()
+                            }
+                        })
+                        snack.show()
                     }
                     uiState.isNeedShowAlert?.let {
                         if(it)
@@ -65,7 +75,35 @@ class EditLoadoutActivity : AppCompatActivity() {
                 }
             }
         }
+
+        viewModel.shownPlayer.observe(this) {
+            val shownPlayer: Player? = viewModel.shownPlayer.value
+            if(shownPlayer != null)
+            {
+                updateUIFromPlayer(shownPlayer)
+            }
+        }
     }
+
+    private fun updateUIFromPlayer(player: Player)
+    {
+        //All our text views//
+        val hpTV = findViewById<TextView>(R.id.tvEditLoadoutLevelsHP)
+        val atkTV = findViewById<TextView>(R.id.tvEditLoadoutLevelsAtk)
+        val strTV = findViewById<TextView>(R.id.tvEditLoadoutLevelsStr)
+        val defTV = findViewById<TextView>(R.id.tvEditLoadoutLevelsDef)
+        val magTV = findViewById<TextView>(R.id.tvEditLoadoutLevelsMag)
+        val rngTV = findViewById<TextView>(R.id.tvEditLoadoutLevelsRng)
+
+        hpTV.text = player.combatLevels.lvlHp.toString()
+        atkTV.text = player.combatLevels.lvlAtk.toString()
+        strTV.text = player.combatLevels.lvlStr.toString()
+        defTV.text = player.combatLevels.lvlDef.toString()
+        magTV.text = player.combatLevels.lvlMag.toString()
+        rngTV.text = player.combatLevels.lvlRng.toString()
+
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_edit_loadout, menu)

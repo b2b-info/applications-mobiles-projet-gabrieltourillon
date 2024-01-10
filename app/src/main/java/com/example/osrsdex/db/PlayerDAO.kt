@@ -17,12 +17,12 @@ interface PlayerDAO {
     suspend fun updatePlayer(player:Player)
 
     @Query("SELECT EXISTS(SELECT * FROM Player WHERE playerName LIKE :playerName LIMIT 1)")
-    fun isPlayerExists(playerName: String) : Boolean
+    suspend fun isPlayerExists(playerName: String) : Boolean
 
     @Query("SELECT * FROM Player WHERE playerName = :playerName")
-    fun getPlayer(playerName: String):Player
+    suspend fun getPlayer(playerName: String):Player
 
     @Query("SELECT * FROM Player " +
            "JOIN Loadout ON Player.playerName = Loadout.LoadoutName")
-    fun getPlayerWithLoadouts(): Map<Player, List<Loadout>>
+    suspend fun getPlayerWithLoadouts(): Map<Player, List<Loadout>>
 }

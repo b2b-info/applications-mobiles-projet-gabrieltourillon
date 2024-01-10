@@ -23,5 +23,6 @@
     <string name="edit_loadout_success_replace">Loadout succesfully replaced!</string>
     <string name="edit_loadout_no_levels_insert">Player added but could not find player levels online.</string>
     <string name="edit_loadout_yes_levels_insert">Player added with Combat Levels.</string>
+    <string name="edit_loadout_error_replace_null">Unknown error replacing loadout. Please try again.</string>
 
 </resources>

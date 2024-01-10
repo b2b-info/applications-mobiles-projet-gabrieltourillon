@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -17,19 +16,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.osrsdex.R
-import com.example.osrsdex.activities.TAG
+import com.example.osrsdex.TAG
 import com.example.osrsdex.activities.loadout.viewloadouts.ViewLoadoutsActivity
 import com.example.osrsdex.activities.main.MainActivity
-import com.example.osrsdex.db.AppDatabase
-import com.example.osrsdex.models.CombatBonuses
-import com.example.osrsdex.models.CombatLevels
-import com.example.osrsdex.models.Loadout
-import com.example.osrsdex.models.Player
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 class EditLoadoutActivity : AppCompatActivity() {
@@ -103,7 +95,7 @@ class EditLoadoutActivity : AppCompatActivity() {
         alertBuilder.setMessage(resources.getString(R.string.alert_save_loadout_message))
         alertBuilder.setPositiveButton("Replace"){
             dialog, which ->
-                viewModel.replaceLoadout()
+                viewModel.onClickReplaceLoadout()
                 viewModel.alertShown()
         }
         .setNegativeButton("Cancel")
